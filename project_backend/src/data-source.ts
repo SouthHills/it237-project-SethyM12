@@ -1,5 +1,9 @@
 import {DataSource} from "typeorm";
 import {Plant} from "./entities/Plant.js";
+import {Component} from "./entities/Component";
+import {Part} from "./entities/Part";
+import {User} from "./entities/User";
+import {Vendor} from "./entities/Vendor";
 
 export const AppDataSource = new DataSource({
     type: "mysql",
@@ -10,7 +14,7 @@ export const AppDataSource = new DataSource({
     database: "SaleCo",
     synchronize: true,
     logging: true,
-    entities: [Plant],
+    entities: [Plant, Component, Part, User, Vendor],
     subscribers: [],
     migrations: []
 });
