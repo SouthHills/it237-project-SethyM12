@@ -11,6 +11,6 @@ export class Vendor {
     @Column({name: "VENDOR_CITY", type: "varchar", length: 32, nullable: false})
     vendorCity!: string;
 
-    @Column({name: "VENDOR_STATE", type: "varchar", length: 32, nullable: false})
+    @Column({name: "VENDOR_STATE", type: "char", length: 2, nullable: false})
     vendorState!: string;
 }

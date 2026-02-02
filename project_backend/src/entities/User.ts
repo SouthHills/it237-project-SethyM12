@@ -14,11 +14,11 @@ export class User {
     @Column({name: "USER_EMAIL", type: "varchar", length: 64, nullable: false})
     userEmail!: string;
 
-    @Column({name: "USER_PASSWORD", type: "varchar", length: 128, nullable: false})
+    @Column({name: "USER_PASSWORD", type: "varchar", length: 64, nullable: false})
     userPassword!: string;
 
-    @Column({name: "USER_ROLE_MANAGER", type: "boolean", nullable: false})
-    userRoleManager!: boolean;
+    @Column({name: "USER_ROLE_MANAGER", type: "bit", nullable: false})
+    userRoleManager!: number;
 
     @Column({name: "PLANT_ID", type: "int", nullable: true})
     plantId!: number | null;

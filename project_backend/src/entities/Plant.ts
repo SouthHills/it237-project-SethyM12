@@ -1,6 +1,6 @@
 import {Column, Entity, PrimaryColumn} from "typeorm";
 
-@Entity("Plant")
+@Entity("PLANT")
 export class Plant {
     @PrimaryColumn({name: "PLANT_ID", type: "int", nullable: false})
     plantId!: number;
