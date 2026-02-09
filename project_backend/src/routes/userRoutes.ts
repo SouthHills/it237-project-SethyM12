@@ -36,7 +36,7 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     const userData = req.body;
-    const requiredFields = ['userId', 'username', 'password', 'email'];
+    const requiredFields = ['userId', 'userFname', 'userLname', 'userEmail', 'userPassword', 'userRoleManager'];
 
     if (requiredFields.some(field => userData[field] == undefined || userData[field] === null)) {
         return res.status(400).json({ message: `All fields are required.` });
