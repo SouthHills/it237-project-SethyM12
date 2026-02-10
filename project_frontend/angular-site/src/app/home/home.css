@@ -1,7 +1,15 @@
 
-body
+.background
 {
-  background-image: url("/grey_background.jpg");
+  background-image: url("/light_blue_background2.jpg");
+  background-size: cover;
+  background-position: center;
+
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 h1
@@ -14,7 +22,7 @@ a
   margin-top: 20px;
   justify-content: center;
   align-items: center;
-  background-color: grey;
+  background-color: #dedede;
   display: block;
   width: 115px;
   height: 40px;
@@ -36,9 +44,7 @@ a:hover
 {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  margin-top: 19%
 }
 
 
