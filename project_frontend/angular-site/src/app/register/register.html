@@ -1,24 +1,23 @@
 <div class="background">
-
   <div class="container">
     <div class="card shadow-sm bg-body-secondary">
       <div class="card-body">
         <div class="text-center">
-          <h1 class="h3 mb-4 login">Login</h1>
+          <h1 class="h3 mb-4 login">Register</h1>
 
-          <form method="POST" id="login-form" (ngSubmit)="validateInputs($event)">
+          <form method="POST" id="login-form">
             <div class="mb-3">
               <label for="email" class="form-label required">
                 <strong>Email</strong>
               </label>
               <br/>
               <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="email4321@gmail.com"
-              class="form-control"
-              required
+                type="email"
+                class="form-control"
+                id="email"
+                name="email"
+                placeholder="email4321@gmail.com"
+                required
               />
             </div>
             <div class="mb-3">
@@ -38,9 +37,9 @@
               />
             </div>
 
-            <br>
-            <h6>Not registered?</h6>
-            <a routerLink="/register" class="register btn mb-1 text-decoration-underline">Register</a>
+            <br />
+            <h6>Log-In!?</h6>
+            <a routerLink="/login" class="register btn mb-1 text-decoration-underline">Register</a>
             <div class="d-flex gap-2">
               <button type="submit" class="btn btn-primary">Login</button>
 

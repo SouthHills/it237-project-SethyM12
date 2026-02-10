@@ -1,1 +1,23 @@
-<p>navbar works!</p>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">SaleCo Browser</a> <!-- # can scroll to somewhere on a page -->
+    <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse" data-bs-target="#navbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar">
+      <div class="navbar-nav">
+        <a routerLink="/" routerLinkActive="active"
+           [routerLinkActiveOptions]="{exact: true}"
+           class="nav-link">
+
+        </a>
+        <a routerLink="/products" routerLinkActive="active"
+           [routerLinkActiveOptions]="{exact: true}"
+           class="nav-link">
+          Products
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
