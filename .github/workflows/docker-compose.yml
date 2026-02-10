@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+    ports:
+      - "3000:3000" #example
+    environment:
+      DB_HOST:
+      DB_PORT: 
+      DB_USER:
+      DB_PASSWORD:
+      DB_NAME:
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD:
+      MYSQL_DATABASE:
+      MYSQL_USER:
+      MYSQL_PASSWORD:
+    volumes:
+      - db_data:/va/lib/mysql
+
+volumes:
+  db_data:
