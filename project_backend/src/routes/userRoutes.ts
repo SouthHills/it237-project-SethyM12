@@ -34,6 +34,24 @@ router.get('/:id', async (req, res) => {
     res.json(sanitizeUser(user));
 });
 
+router.get('/login/:email/:password', async (req, res) => {
+    const plainPassword = req.params.password;
+    const email = req.params.email;
+    const user = await AppDataSource.getRepository(User).findOneBy({ userEmail: email });
+
+    if (!user) {
+        return res.status(404).send(`Invalid login.`);
+    }
+
+    const passwordMatch = await bcrypt.compare(plainPassword, user.userPassword);
+
+    if (!passwordMatch) {
+        return res.status(401).json({ message: "Invalid login." });
+    }
+
+    res.json(sanitizeUser(user));
+});
+
 router.post('/', async (req, res) => {
     const userData = req.body;
     const requiredFields = ['userId', 'userFname', 'userLname', 'userEmail', 'userPassword', 'userRoleManager'];

@@ -14,9 +14,6 @@ export class Part{
     @Column({name: "PART_SPECS", type: "varchar", length: 32, nullable: false})
     partSpecs!: string;
 
-    @Column({name: "COMP_ID", type: "int", nullable: true})
-    compId!: number | null;
-
     @Column({name: "VENDOR_ID", type: "int", nullable: true})
     vendorId!: number | null;
 }
