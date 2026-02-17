@@ -4,11 +4,9 @@ import { Component } from "./entities/Component.js";
 import { Part } from "./entities/Part.js";
 import { User } from "./entities/User.js";
 import { Vendor } from "./entities/Vendor.js";
-
 import dotenv from "dotenv";
 dotenv.config();
 const DB_PWD = process.env.DB_PASSWORD;
-
 export const AppDataSource = new DataSource({
     type: "mssql",
     host: "cloudanddevops.database.windows.net",
