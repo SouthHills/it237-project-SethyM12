@@ -6,6 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="e4fc310b-3882-4a68-b170-8d03f07037a3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_backend/src/routes/userRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/project_backend/src/routes/userRoutes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_backend/src/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/project_backend/src/server.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_frontend/angular-site/src/app/app.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/project_frontend/angular-site/src/app/app.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_frontend/angular-site/src/app/register/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/project_frontend/angular-site/src/app/register/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_frontend/angular-site/src/app/register/register.ts" beforeDir="false" afterPath="$PROJECT_DIR$/project_frontend/angular-site/src/app/register/register.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_frontend/angular-site/src/app/services/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/project_frontend/angular-site/src/app/services/user.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,6 +20,18 @@
   </component>
   <component name="ComposerSettings">
     <execution />
+  </component>
+  <component name="CopilotPersistence">
+    <persistenceIdMap>
+      <entry key="_/Users/alexsawyer/Documents/current_courses/devOps/projects/it237-project-SethyM12" value="38AgnKovQbRTEUzgkYWkiPPmwuS" />
+    </persistenceIdMap>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -39,22 +57,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "develop",
-    "last_opened_file_path": "/Users/alexsawyer/Documents/current_courses/devOps/projects/it237-project-SethyM12",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;alex__develop__branch&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/alexsawyer/Documents/current_courses/devOps/projects/it237-project-SethyM12&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/alexsawyer/Documents/current_courses/devOps/projects/it237-project-SethyM12/project_frontend/angular-site/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RunManager">
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/project_backend/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.start" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -72,11 +109,27 @@
       <updated>1768247954732</updated>
       <workItem from="1768247955925" duration="659000" />
       <workItem from="1768250111255" duration="236000" />
-      <workItem from="1768250376849" duration="360000" />
+      <workItem from="1768250376849" duration="4821000" />
+      <workItem from="1768317253716" duration="398000" />
+      <workItem from="1768403601505" duration="68000" />
+      <workItem from="1768853832664" duration="4592000" />
+      <workItem from="1770060271804" duration="1748000" />
+      <workItem from="1770597248505" duration="30810000" />
+      <workItem from="1771353732417" duration="3720000" />
+      <workItem from="1771370905881" duration="3171000" />
+      <workItem from="1771394497362" duration="339000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
   </component>
 </project>

@@ -11,8 +11,12 @@ export class User
 {
   constructor(private http: HttpClient) {}
 
-  private apiUrl = 'http://localhost:3000/api/users'; // your backend base URL
+  private apiUrl = 'http://localhost:3000/users'; // your backend base URL
 
 
+  registerUser(userData: object): Observable<UserModel>
+  {
+    return this.http.post<UserModel>(this.apiUrl, userData);
+  }
 }
 

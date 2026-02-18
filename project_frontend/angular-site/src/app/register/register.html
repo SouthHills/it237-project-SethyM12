@@ -5,7 +5,16 @@
         <div class="text-center">
           <h1 class="h3 mb-4 login">Register</h1>
 
-          <form method="POST" id="login-form">
+          @if (errorMessage())
+          {
+            <h3 class="text-danger">{{ errorMessage() }}</h3>
+          }
+          @if (successMessage())
+          {
+            <h3 class="text-success">{{ successMessage() }}</h3>
+          }
+
+          <form method="POST" id="register-form" (ngSubmit)="validateInputs($event)">
             <div class="mb-3">
               <label for="email" class="form-label required">
                 <strong>Email</strong>
@@ -37,17 +46,46 @@
               />
             </div>
 
+            <div class="mb-3">
+              <label for="first-name" class="form-label required">
+                <strong>First Name</strong>
+                <br>
+              </label>
+              <input
+                type="text"
+                class="form-control"
+                id="first-name"
+                name="firstName"
+                maxlength="50"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="last-name" class="form-label required">
+                <strong>Last Name</strong>
+                <br>
+              </label>
+              <input
+                type="text"
+                class="form-control"
+                id="last-name"
+                name="lastName"
+                maxlength="50"
+                required
+              />
+            </div>
+
             <br />
             <h6>Already Logged In?</h6>
             <a routerLink="/login" class="register btn mb-1 text-decoration-underline">Login</a>
             <div class="d-flex gap-2">
-              <button type="submit" class="btn btn-primary">Login</button>
+              <button type="submit" class="btn btn-primary">Register</button>
 
               <button type="reset" class="btn-outline-secondary reset-button">Reset</button>
             </div>
 
           </form>
-<!--commit-->
         </div>
       </div>
     </div>

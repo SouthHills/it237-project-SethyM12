@@ -1,13 +1,12 @@
 export { router as userRouter }
 
 import express from 'express';
-import bodyParser from 'body-parser';
 import bcrypt from 'bcrypt';
 import {AppDataSource} from "../data-source.js";
 import {User} from "../entities/User.js";
 
 const router = express.Router();
-router.use(bodyParser.json());
+/* Body already parsed by app.use(bodyParser.json()) in server.ts - do not parse again or req.body can be lost */
 
 const SALT_ROUNDS = 10;
 
@@ -18,11 +17,13 @@ function sanitizeUser(user: any) {
     return rest;
 }
 
+/*Sending Sanitized User*/
 router.get('/', async (_req, res) => {
     const users = await AppDataSource.getRepository(User).find();
     res.json(users.map(sanitizeUser));
 });
 
+/*Getting a user by ID*/
 router.get('/:id', async (req, res) => {
     const id = parseInt(req.params.id, 10);
     const user = await AppDataSource.getRepository(User).findOneBy({ userId: id });
@@ -34,28 +35,42 @@ router.get('/:id', async (req, res) => {
     res.json(sanitizeUser(user));
 });
 
+/*Creating a new user*/
 router.post('/', async (req, res) => {
     const userData = req.body;
-    const requiredFields = ['userId', 'userFname', 'userLname', 'userEmail', 'userPassword', 'userRoleManager'];
+    const requiredFields = ['userFname', 'userLname', 'userEmail', 'userPassword', 'userRoleManager'];
 
-    if (requiredFields.some(field => userData[field] == undefined || userData[field] === null)) {
-        return res.status(400).json({ message: `All fields are required.` });
+    const userRepository = AppDataSource.getRepository(User);
+
+    /*im just adding one to the highest user id*/
+    if (userData.userId == null || userData.userId === undefined)
+    {
+        /*https://typeorm.io/docs/query-builder/select-query-builder/*/
+        const maxUser = await userRepository.createQueryBuilder("user")
+            .select("MAX(user.userId)", "max")
+            .getRawOne();
+
+            userData.userId = maxUser.max + 1;
+
     }
 
-    try {
-        userData.password = await bcrypt.hash(userData.password, SALT_ROUNDS);
+    try
+    {
+        userData.userPassword = await bcrypt.hash(userData.userPassword, SALT_ROUNDS);
 
-        const userRepository = AppDataSource.getRepository(User);
         const newUser = userRepository.create(userData);
         const savedUser = await userRepository.save(newUser);
 
         res.status(201).json(sanitizeUser(savedUser));
-    } catch (e) {
+    }
+    catch (e)
+    {
         console.error("Error creating user: ", e);
         res.status(500).json({ message: "Failed to create user.", e });
     }
 });
 
+/*Updating an existing User*/
 router.put('/:id', async (req, res) => {
     const id = parseInt(req.params.id, 10);
     const userData = req.body;
@@ -63,34 +78,63 @@ router.put('/:id', async (req, res) => {
     const userRepository = AppDataSource.getRepository(User);
     const existingUser = await userRepository.findOneBy({ userId: id } as any);
 
-    if (!existingUser) {
+    if (!existingUser)
+    {
         return res.status(404).json({ message: `User with ID ${id} not found!` });
     }
 
-    try {
-        if (userData.password) {
+    try
+    {
+        if (userData.password)
+        {
             userData.password = await bcrypt.hash(userData.password, SALT_ROUNDS);
         }
 
         userRepository.merge(existingUser, userData);
         const updatedUser = await userRepository.save(existingUser);
         res.json(sanitizeUser(updatedUser));
-    } catch (e) {
+    }
+    catch (e)
+    {
         console.error("Error updating user: ", e);
         res.status(500).json({ message: "Failed to update user.", e });
     }
 });
 
+/*VERIFY LOGIN HERE, POST BECAUSE GET REQUESTS PUT DATA IN THE URL*/
+router.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+    const userRepository = AppDataSource.getRepository(User);
+
+    const user = await userRepository.findOneBy({ userEmail: email });
+    if (!user)
+    {
+        return res.status(401).json({ success: false, message: 'Invalid email or password' }); /*401 code is used authentication failures*/
+    }
+
+    const passwordMatch = await bcrypt.compare(password, user.userPassword);
+
+    if (!passwordMatch)
+    {
+        return res.status(401).json({ success: false, message: 'Invalid email or password' }); /*401 code is used authentication failures*/
+    }
+
+    res.json({ success: true, message: 'Login successful', user: sanitizeUser(user) });
+});
+
+/*Deleting using by ID here*/
 router.delete('/:id', async (req, res) => {
     const id = parseInt(req.params.id, 10);
     const userRepository = AppDataSource.getRepository(User);
     const user = await userRepository.findOneBy({ userId: id } as any);
 
-    if (!user) {
+    if (!user)
+    {
         return res.status(404).json({ message: `User with ID ${id} not found!` });
     }
 
-    try {
+    try
+    {
         await userRepository.remove(user);
         res.status(204).send();
     } catch (e) {
