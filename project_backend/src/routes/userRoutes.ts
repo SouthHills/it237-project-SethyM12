@@ -53,6 +53,7 @@ router.get('/login/:email/:password', async (req, res) => {
     res.json(sanitizeUser(user));
 });
 
+// Create user
 router.post('/', async (req, res) => {
     const userData = req.body;
     const requiredFields = ['userFname', 'userLname', 'userEmail', 'userPassword', 'userRoleManager'];
