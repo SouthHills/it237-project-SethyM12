@@ -1,7 +1,8 @@
 import {Component, signal} from '@angular/core';
-import {RouterLink} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import {User} from '../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -15,12 +16,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class Login {
 
+  constructor(private userService: User, private router: Router) {}
 
-  /*
-    constructor(private userService: UserService) {}
-  */
-
-  private apiUrl = 'http://localhost:3000/login';
 
   errorMessage = signal<string>('');
   successMessage = signal<string>('');
@@ -30,29 +27,40 @@ export class Login {
 
     const form = event.target as HTMLFormElement;
     const email = (form.elements.namedItem('email') as HTMLInputElement).value;
-    /!*get email value*!/
+
+
     const password = (form.elements.namedItem('password') as HTMLInputElement).value;
-    /!*get password value*!/
+
 
     this.errorMessage.set('');
     this.successMessage.set('');
 
-    /*this.userService.login(email, password).subscribe({
-      next: (res) => {
-        if (res.success) {
-          this.successMessage = res.message;
-          console.log('User:', res.user);
-          // Navigate to dashboard or store token
-        } else {
-          this.errorMessage = res.message;
+    this.userService.loginUser(email,password).subscribe({
+      next: (response) => {
+        response = response.user
+
+        if(response.userRoleManager === 1)
+        {
+          this.router.navigate(['/manager']);
         }
+        else
+        {
+          const plantId = response.plantId;
+          console.log(response.plantId);
+
+            localStorage.setItem('plantId', String(plantId));
+
+          this.router.navigate(['/employee-component-view']);
+        }
+        this.successMessage.set(response.message);
       },
       error: (err) => {
-        this.errorMessage = 'Server error: ' + err.message;
+        const msg = err.error?.message ?? 'Login failed. Please check your credentials.';
+        this.errorMessage.set(msg);
       }
-    })*/
-    return;
-    /*COMING BACK TO THIS LATER*/
+    })
+
+
   }
 }
 

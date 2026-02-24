@@ -18,5 +18,18 @@ export class User
   {
     return this.http.post<UserModel>(this.apiUrl, userData);
   }
+
+  loginUser(email: string, password: string): Observable<any>
+  {
+    return this.http.post<any>(`${this.apiUrl}/login`, { email, password });
+  }
+
+  private componentsUrl = 'http://localhost:3000/components';
+
+  getComponentsByPlantId(plantId: string): Observable<any> {
+    const url = `${this.componentsUrl}/plant/${plantId}`;
+    return this.http.get<any>(url);
+  }
+
 }
 
