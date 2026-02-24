@@ -37,7 +37,7 @@ export class Register {
       userLname: lastName.value,
       userEmail: email.value,
       userPassword: password.value,
-      userRoleManager
+      userRoleManager: userRoleManager
     };
 
     this.userService.registerUser(userInfo).subscribe({

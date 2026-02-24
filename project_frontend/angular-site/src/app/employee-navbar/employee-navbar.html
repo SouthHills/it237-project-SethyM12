@@ -1,21 +1,30 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">SaleCo Browser</a> <!-- # can scroll to somewhere on a page -->
     <button class="navbar-toggler" type="button"
             data-bs-toggle="collapse" data-bs-target="#navbar">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbar">
       <div class="navbar-nav">
-        <a routerLink="/" routerLinkActive="active"
+        <a routerLink="/employee-component-view" routerLinkActive="active"
            [routerLinkActiveOptions]="{exact: true}"
            class="nav-link">
-
+          Components
         </a>
-        <a routerLink="/products" routerLinkActive="active"
+        <a routerLink="/employee-part-view" routerLinkActive="active"
            [routerLinkActiveOptions]="{exact: true}"
            class="nav-link">
-          Products
+          Parts
+        </a>
+        <a routerLink="/employee-part-view" routerLinkActive="active"
+           [routerLinkActiveOptions]="{exact: true}"
+           class="nav-link">
+          Vendor
+        </a>
+        <a routerLink="/login" routerLinkActive="active"
+           [routerLinkActiveOptions]="{exact: true}"
+           class="nav-link">
+          Logout
         </a>
       </div>
     </div>
