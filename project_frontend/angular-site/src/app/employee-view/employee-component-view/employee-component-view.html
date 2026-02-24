@@ -1,0 +1,33 @@
+<div>
+  <app-employee-navbar />
+  @if(errorMessage())
+  {
+    <h3 class="text-danger">{{ errorMessage() }}</h3>
+  }
+  @if(!errorMessage())
+  {
+    <table class="table table-striped table-bordered align-middle">
+      <thead class="table-light">
+      <tr>
+        <th>COMP_ID</th>
+        <th>COMP_NAME</th>
+        <th>COMP_QTY</th>
+        <th>COMP_SPECS</th>
+        <th>PLANT_ID</th>
+      </tr>
+      </thead>
+      <tbody>
+        @for (component of components(); track component.compId) {
+          <tr>
+            <td>{{ component.compId }}</td>
+            <td>{{ component.compName }}</td>
+            <td>{{ component.compQuantity }}</td>
+            <td>{{ component.compSpecs }}</td>
+            <td>{{ component.plantId }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+
+</div>
