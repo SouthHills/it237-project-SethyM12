@@ -66,7 +66,7 @@ router.post('/', async (req, res) => {
     catch (e)
     {
         console.error("Error creating user: ", e);
-        res.status(500).json({ message: "Failed to create user.", e });
+        res.status(500).json({ message: "Failed to create user, email might already exist.", e });
     }
 });
 
