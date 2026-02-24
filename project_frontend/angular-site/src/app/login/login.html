@@ -1,8 +1,64 @@
-<body>
+<div class="background">
 
-<div>
-  <h1>
-    Login
-  </h1>
+  <div class="container">
+    <div class="card shadow-sm bg-body-secondary">
+      <div class="card-body">
+        <div class="text-center">
+          <h1 class="h3 mb-4 login">Login</h1>
+          @if (errorMessage())
+          {
+            <h3 class="text-danger">{{ errorMessage() }}</h3>
+          }
+          @if (successMessage())
+          {
+            <h3 class="text-success">{{ successMessage() }}</h3>
+          }
+          <form method="POST" id="login-form" (ngSubmit)="validateInputs($event)">
+            <div class="mb-3">
+              <label for="email" class="form-label required">
+                <strong>Email</strong>
+              </label>
+              <br/>
+              <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="email4321@gmail.com"
+              class="form-control"
+              required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label required">
+                <strong>Password</strong>
+                <br>
+              </label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                name="password"
+                placeholder="ex: secret_Password!"
+                minlength="8"
+                maxlength="50"
+                required
+              />
+            </div>
+
+            <br>
+            <h6>Not registered?</h6>
+            <a routerLink="/register" class="register btn mb-1 text-decoration-underline">Register</a>
+            <div class="d-flex gap-2">
+              <button type="submit" class="btn btn-primary">Login</button>
+
+              <button type="reset" class="btn-outline-secondary reset-button">Reset</button>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-</body>
+
