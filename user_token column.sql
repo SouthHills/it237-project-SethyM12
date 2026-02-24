@@ -1,0 +1,2 @@
+ALTER TABLE [dbo].[USER]
+ADD USER_TOKEN varchar(500);
