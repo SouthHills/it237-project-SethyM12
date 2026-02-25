@@ -15,23 +15,12 @@ router.get("/", async (req, res) => {
     res.json(plants);
 });
 
-router.get('/:id', async (req, res) => {
+router.get('plant/:id', async (req, res) => {
     const id = parseInt(req.params.id, 10);
-
-    const componentWherePlantId = await AppDataSource.getRepository(Component).findOneBy({
-        plantId: id
-
+    const components = await AppDataSource.getRepository(Component).find({
+        where: { plantId: id }
     });
-    console.log(componentWherePlantId);
-
-    if(!componentWherePlantId)
-    {
-        res.status(404).send(`Plant with id ${id} not found!`);
-    }
-    else
-    {
-        res.json(componentWherePlantId);
-    }
+    res.json(components);
 });
 
 router.put('/:id', async (req, res) => {
