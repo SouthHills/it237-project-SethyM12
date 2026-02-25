@@ -32,7 +32,8 @@ export class EmployeeComponentView {
 
   setNullPlantIdMessage(): boolean {
     const plantId = this.getPlantIdFromLocalStorage();
-    if (!plantId || plantId === 'null' || plantId === 'undefined') {
+    if (!plantId || plantId === 'null' || plantId === 'undefined')
+    {
       this.errorMessage.set('You are not associated with any plant in our database');
       return true;
     }
@@ -41,7 +42,8 @@ export class EmployeeComponentView {
 
   getComponents(): void {
     const plantId = this.getPlantIdFromLocalStorage();
-    if (plantId) {
+    if (plantId)
+    {
       this.userService.getComponentsByPlantId(plantId).subscribe({
         next: (response) => {
           console.log(this.components);
