@@ -10,8 +10,19 @@ router.use(bodyParser.json());
 
 router.get('/', async (req, res) => {
     const components = await AppDataSource.getRepository(Component).find();
+
     res.json(components);
 });
+
+/*returning components by plant id*/
+router.get('/id', async (req, res) => {
+    const planId = parseInt(req.query.plantId as string, 10);
+    const components = await AppDataSource.getRepository(Component).findBy({
+
+    });
+
+    res.json(components);
+})
 
 router.get('/:id', async (req, res) => {
     const id = parseInt(req.params.id);

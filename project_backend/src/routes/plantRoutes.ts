@@ -1,3 +1,5 @@
+import {Component} from "../entities/Component.js";
+
 export { router as plantRouter }
 
 import express from 'express';
@@ -16,15 +18,19 @@ router.get("/", async (req, res) => {
 router.get('/:id', async (req, res) => {
     const id = parseInt(req.params.id, 10);
 
-    const plant = await AppDataSource.getRepository(Plant).findOneBy({
+    const componentWherePlantId = await AppDataSource.getRepository(Component).findOneBy({
         plantId: id
-    });
 
-    if(!plant) {
+    });
+    console.log(componentWherePlantId);
+
+    if(!componentWherePlantId)
+    {
         res.status(404).send(`Plant with id ${id} not found!`);
     }
-    else{
-        res.json(plant);
+    else
+    {
+        res.json(componentWherePlantId);
     }
 });
 

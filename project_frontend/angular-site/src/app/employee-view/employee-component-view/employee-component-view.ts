@@ -44,9 +44,11 @@ export class EmployeeComponentView {
     if (plantId) {
       this.userService.getComponentsByPlantId(plantId).subscribe({
         next: (response) => {
+          console.log(this.components);
           this.components.set(response);
         },
         error: (err) => {
+          console.log(this.components);
           console.error('Error fetching components:', err);
           this.errorMessage.set('Failed to load components.');
         }
