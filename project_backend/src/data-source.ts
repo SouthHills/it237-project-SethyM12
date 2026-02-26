@@ -29,3 +29,7 @@ export const AppDataSource = new DataSource({
         },
     },
 });
+
+export function checkBearerToken(){
+
+}

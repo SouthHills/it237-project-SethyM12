@@ -12,6 +12,7 @@ let User = class User {
     userEmail;
     userPassword;
     userRoleManager;
+    userToken;
     plantId;
 };
 __decorate([
@@ -32,6 +33,9 @@ __decorate([
 __decorate([
     Column({ name: "USER_ROLE_MANAGER", type: "bit", nullable: false })
 ], User.prototype, "userRoleManager", void 0);
+__decorate([
+    Column({ name: "USER_TOKEN", type: "varchar", length: 500, nullable: true })
+], User.prototype, "userToken", void 0);
 __decorate([
     Column({ name: "PLANT_ID", type: "int", nullable: true })
 ], User.prototype, "plantId", void 0);

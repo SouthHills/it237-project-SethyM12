@@ -4,9 +4,11 @@ import bodyParser from 'body-parser';
 import bcrypt from 'bcrypt';
 import { AppDataSource } from "../data-source.js";
 import { User } from "../entities/User.js";
+import jwt from 'jsonwebtoken';
 const router = express.Router();
 router.use(bodyParser.json());
 const SALT_ROUNDS = 10;
+const secretKey = 'j3?gRac8wDo6tr0G';
 // Strip the password away so all other user data is sent safely
 function sanitizeUser(user) {
     if (!user)
@@ -37,7 +39,16 @@ router.get('/login/:email/:password', async (req, res) => {
     if (!passwordMatch) {
         return res.status(401).json({ message: "Invalid login." });
     }
-    res.json(sanitizeUser(user));
+    const bearerToken = generateBearerToken(user.userId, secretKey);
+    try {
+        user.userToken = bearerToken;
+        await AppDataSource.getRepository(User).save(user);
+    }
+    catch (e) {
+        console.error("Error saving user token: ", e);
+        return res.status(500).json({ message: "Failed to save user token.", e });
+    }
+    res.json({ token: bearerToken, user: sanitizeUser(user) });
 });
 router.post('/', async (req, res) => {
     const userData = req.body;
@@ -94,3 +105,8 @@ router.delete('/:id', async (req, res) => {
         res.status(500).json({ message: "Failed to delete user.", e });
     }
 });
+function generateBearerToken(userId, secretKey, expiresIn = 3600) {
+    const payload = { userId };
+    const options = { expiresIn };
+    return jwt.sign(payload, secretKey, options);
+}
