@@ -31,5 +31,13 @@ export class User
     return this.http.get<any>(url);
   }
 
+  private plantsUrl = 'http://localhost:3000/parts';
+
+  getPartsByPlantId(plantId: string): Observable<any> {
+    const url = `${this.plantsUrl}/plant/${plantId}`;
+    return this.http.get<any>(url);
+  }
+
+
 }
 

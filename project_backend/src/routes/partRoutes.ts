@@ -14,6 +14,27 @@ router.get('/', async (req, res) => {
     res.json(parts);
 });
 
+router.get('/plant/:id', async (req, res) => {
+
+    try
+    {
+        const id = parseInt(req.params.id, 10);
+        const partRepository = AppDataSource.getRepository(Part);
+        const parts = await partRepository
+            .createQueryBuilder("part")
+            .innerJoin("BUILD", "build", "build.PART_ID = part.partId")
+            .innerJoin("COMPONENT", "comp", "comp.COMP_ID = build.COMP_ID")
+            .where("comp.PLANT_ID = :id", { id })
+            .getMany();
+        res.json(parts);
+    }
+    catch (e)
+    {
+        console.error("Error fetching parts by plant ID: ", e);
+        res.status(500).json({ message: "Failed to fetch parts by plant ID.", e });
+    }
+});
+
 router.get('/:id', async (req, res) => {
     const id = parseInt(req.params.id, 10);
 

@@ -9,6 +9,14 @@ router.get('/', async (req, res) => {
     const components = await AppDataSource.getRepository(Component).find();
     res.json(components);
 });
+/*returning components by plant id - must be before /:id so "plant" is not matched as id*/
+router.get('/plant/:plantId', async (req, res) => {
+    const plantId = parseInt(req.params.plantId, 10);
+    const components = await AppDataSource.getRepository(Component).findBy({
+        plantId
+    });
+    res.json(components);
+});
 router.get('/:id', async (req, res) => {
     const id = parseInt(req.params.id);
     const component = await AppDataSource.getRepository(Component).findOneBy({

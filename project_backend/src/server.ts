@@ -15,14 +15,6 @@ app.use(cors());
 
 app.use(bodyParser.json());
 
-// Debug: log POST body so we can see what the server receives (remove when done)
-app.use((req, _res, next) => {
-    if (req.method === 'POST' && req.originalUrl.startsWith('/users')) {
-        console.log('POST /users - body received:', JSON.stringify(req.body));
-    }
-    next();
-});
-
 app.use("/components", componentRouter);
 app.use("/parts", partRouter);
 app.use("/users", userRouter);
