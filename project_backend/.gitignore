@@ -41,6 +41,14 @@ build/Release
 node_modules/
 jspm_packages/
 
+# IDE Metadata directories
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/
 
