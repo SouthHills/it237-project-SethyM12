@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e4fc310b-3882-4a68-b170-8d03f07037a3" name="Changes" comment="" />
+    <list default="true" id="e4fc310b-3882-4a68-b170-8d03f07037a3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/project_backend/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/project_backend/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_backend/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/project_backend/tsconfig.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,15 +18,8 @@
   </component>
   <component name="CopilotPersistence">
     <persistenceIdMap>
-      <entry key="_/Users/alexsawyer/Documents/current_courses/devOps/projects/it237-project-SethyM12" value="38AgnKovQbRTEUzgkYWkiPPmwuS" />
+      <entry key="_/home/smiles/Documents/GitHub/it237-project-SethyM12" value="38AgnKovQbRTEUzgkYWkiPPmwuS" />
     </persistenceIdMap>
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="TypeScript File" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -40,7 +36,7 @@
     &quot;accountId&quot;: &quot;7748c68d-d63b-4f16-89b8-fd61cce2856c&quot;
   }
 }</component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="/opt/homebrew/Cellar/php/8.4.11/bin/php" />
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="/bin/php" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
@@ -55,40 +51,22 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "git-widget-placeholder": "develop",
-    "last_opened_file_path": "/Users/alexsawyer/Documents/current_courses/devOps/projects/it237-project-SethyM12",
+    "last_opened_file_path": "/home/smiles/Documents/GitHub/it237-project-SethyM12",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "npm.start.executor": "Run",
-    "ts.external.directory.path": "/Users/alexsawyer/Documents/current_courses/devOps/projects/it237-project-SethyM12/project_frontend/angular-site/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
-    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/project_backend/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="start" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="npm.start" />
-      </list>
-    </recent_temporary>
-  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-e03c56caf84a-JavaScript-PS-252.23892.419" />
-        <option value="bundled-php-predefined-a98d8de5180a-c72577f2c82f-com.jetbrains.php.sharedIndexes-PS-252.23892.419" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-PS-253.30387.85" />
+        <option value="bundled-php-predefined-a98d8de5180a-0e0d91225499-com.jetbrains.php.sharedIndexes-PS-253.30387.85" />
       </set>
     </attachedChunks>
   </component>
@@ -101,15 +79,8 @@
       <updated>1768247954732</updated>
       <workItem from="1768247955925" duration="659000" />
       <workItem from="1768250111255" duration="236000" />
-      <workItem from="1768250376849" duration="4821000" />
-      <workItem from="1768317253716" duration="398000" />
-      <workItem from="1768403601505" duration="68000" />
-      <workItem from="1768853832664" duration="4592000" />
-      <workItem from="1770060271804" duration="1748000" />
-      <workItem from="1770597248505" duration="30810000" />
-      <workItem from="1771353732417" duration="3720000" />
-      <workItem from="1771370905881" duration="3171000" />
-      <workItem from="1771394497362" duration="339000" />
+      <workItem from="1768250376849" duration="360000" />
+      <workItem from="1771355894183" duration="700000" />
     </task>
     <servers />
   </component>

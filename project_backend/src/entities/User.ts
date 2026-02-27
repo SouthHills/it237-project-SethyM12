@@ -20,6 +20,9 @@ export class User {
     @Column({name: "USER_ROLE_MANAGER", type: "bit", nullable: false})
     userRoleManager!: number;
 
+    @Column({name: "USER_TOKEN", type: "varchar", length: 500, nullable: true})
+    userToken!: string | null;
+
     @Column({name: "PLANT_ID", type: "int", nullable: true})
     plantId!: number | null;
 }
