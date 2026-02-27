@@ -5,18 +5,14 @@ import { Part } from "./entities/Part.js";
 import { User } from "./entities/User.js";
 import { Vendor } from "./entities/Vendor.js";
 
-import dotenv from "dotenv";
-dotenv.config();
-const DB_PWD = process.env.DB_PASSWORD;
-
 export const AppDataSource = new DataSource({
     type: "mssql",
     host: "cloudanddevops.database.windows.net",
     port: 1433,
     username: "sliggett24",
-    password: `${DB_PWD}`,
+    password: "ABC123!!",
     database: "Cloud and Devops Final DB",
-    synchronize: false,
+    synchronize: true,
     logging: true,
     entities: [Plant, Component, Part, User, Vendor],
     options: {
@@ -29,6 +25,7 @@ export const AppDataSource = new DataSource({
         },
     },
 });
+
 
 export function checkBearerToken(){
 
