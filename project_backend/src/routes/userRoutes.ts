@@ -86,7 +86,6 @@ router.get('/:id', async (req, res) => {
 // Create user
 router.post('/', async (req, res) => {
     const userData = req.body;
-    const requiredFields = ['userFname', 'userLname', 'userEmail', 'userPassword', 'userRoleManager'];
 
     const userRepository = AppDataSource.getRepository(User);
 

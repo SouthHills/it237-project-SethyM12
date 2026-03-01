@@ -1,0 +1,52 @@
+<div>
+
+  <app-manager-navbar />
+  @if(errorMessage())
+  {
+    <h3 class="text-danger">{{ errorMessage() }}</h3>
+  }
+  @if(!errorMessage())
+  {
+    <table class="table table-striped table-bordered align-middle">
+      <thead class="table-light">
+      <tr>
+        <th>USER_ID</th>
+        <th>USER_EMAIL</th>
+        <th>USER_FNAME</th>
+        <th>USER_LNAME</th>
+        <th>USER_ROLE_MANAGER</th>
+        <th>PLANT_ID</th>
+      </tr>
+      </thead>
+      <tbody>
+        @for (user of users(); track user.userId) {
+          <tr>
+            <td>
+              {{ user.userId }}
+            </td>
+            <td>
+            <input [ngModel]="user.userEmail" (ngModelChange)="user.userEmail = $event" />
+            </td>
+            <td>
+              <input [ngModel]="user.userFname" (ngModelChange)="user.userFname = $event" />
+            </td>
+            <td>
+              <input [ngModel]="user.userLname" (ngModelChange)="user.userFname = $event" />
+            </td>
+            <td>
+              <input [ngModel]="user.userRoleManager" (ngModelChange)="user.userRoleManager = $event" />
+            </td>
+            <td>
+              <input [ngModel]="user.plantId" (ngModelChange)="user.plantId = $event" />
+            </td>
+            <td class="d-flex justify-content-end gap-2">
+              <button class="btn btn-primary" (click)="updateUser(parseInt(user.userId), user)">Update</button>
+              <button class="btn btn-danger" (click)="deleteUser(parseInt(user.userId))">Delete</button>
+            </td>
+
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</div>

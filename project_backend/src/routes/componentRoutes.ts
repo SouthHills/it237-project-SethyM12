@@ -91,12 +91,23 @@ router.post('/', async (req, res) => {
     const componentData = req.body;
     const requiredFields = ['compId', 'compName', 'compQuantity', 'compSpecs'];
 
+    const componentRepository = AppDataSource.getRepository(Component);
+
+    if (componentData.compId == null || componentData.compId === undefined || componentData.compId === 0)
+    {
+        /*https://typeorm.io/docs/query-builder/select-query-builder/*/
+        const maxComponent = await componentRepository.createQueryBuilder("component")
+            .select("MAX(component.COMP_ID)", "max")
+            .getRawOne();
+
+        componentData.compId = maxComponent.max + 1;
+    }
+
     if(requiredFields.some(field => componentData[field] == undefined
         || componentData[field] === null)){
         return  res.status(400).json({ message: `All fields are required except PLANT_ID` });
     }
 
-    const componentRepository = AppDataSource.getRepository(Component);
 
     try{
         const newComponent = componentRepository.create(componentData);

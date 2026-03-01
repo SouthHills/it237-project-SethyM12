@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {UserModel} from '../models/user.model';
+import {ComponentModel} from '../models/component.model';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +14,22 @@ export class User
 
   private apiUrl = 'http://localhost:3000/users'; // your backend base URL
 
+  getUsers(): Observable<UserModel[]>
+  {
+    return this.http.get<UserModel[]>(this.apiUrl);
+  }
+
+  updateUser(userId: number, userObject: UserModel): Observable<any>
+  {
+    return this.http.put(`${this.apiUrl}/${userId}`, {userId: userId, userEmail: userObject.userEmail,
+      userFname: userObject.userFname, userLname: userObject.userLname, userRoleManager: userObject.userRoleManager,
+      plantId: userObject.plantId});
+  }
+
+  deleteUser(userId: number): Observable<any>
+  {
+    return this.http.delete(`${this.apiUrl}/${userId}`);
+  }
 
   registerUser(userData: object): Observable<UserModel>
   {
@@ -26,6 +43,26 @@ export class User
 
   private componentsUrl = 'http://localhost:3000/components';
 
+  getAllComponents(): Observable<ComponentModel[]> {
+    return this.http.get<any>(this.componentsUrl);
+  }
+
+  updateComponent(componentId: number, componentObject: ComponentModel): Observable<any> {
+    return this.http.put(`${this.componentsUrl}/${componentId}`, {componentId: componentId,
+      componentName: componentObject.compName, compQuantity: componentObject.compQuantity,
+      plantId: componentObject.plantId});
+  }
+
+  deleteComponent(componentId: number): Observable<any> {
+    return this.http.delete(`${this.componentsUrl}/${componentId}`);
+  }
+
+  createComponent(componentObject: any): Observable<any> {
+    return this.http.post(this.componentsUrl, {compId: componentObject.compId, compName: componentObject.compName,
+      compQuantity: componentObject.compQuantity, compSpecs: componentObject.compSpecs, plantId: componentObject.plantId});
+  }
+
+
   getComponentsByPlantId(plantId: string): Observable<any> {
     const url = `${this.componentsUrl}/plant/${plantId}`;
     return this.http.get<any>(url);
@@ -37,6 +74,7 @@ export class User
     const url = `${this.plantsUrl}/plant/${plantId}`;
     return this.http.get<any>(url);
   }
+
 
 
 }
