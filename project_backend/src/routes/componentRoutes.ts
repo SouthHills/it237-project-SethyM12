@@ -1,10 +1,11 @@
+import {checkBearerToken} from "../utils/Utils.js";
+
 export { router as componentRouter }
 
 import express from 'express';
 import bodyParser from 'body-parser';
 import {AppDataSource} from "../data-source.js";
 import {Component} from "../entities/Component.js";
-import {checkBearerToken} from "../server.js";
 
 const router = express.Router();
 

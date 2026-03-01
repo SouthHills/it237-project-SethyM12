@@ -4,7 +4,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import { AppDataSource } from "../data-source.js";
 import { Plant } from "../entities/Plant.js";
-import { checkBearerToken } from "../server.js";
+import { checkBearerToken } from "../utils/Utils.js";
 const router = express.Router();
 router.use(bodyParser.json());
 const secretKey = 'j3?gRac8wDo6tr0G';
