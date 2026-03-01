@@ -4,6 +4,7 @@ import { Component } from "./entities/Component.js";
 import { Part } from "./entities/Part.js";
 import { User } from "./entities/User.js";
 import { Vendor } from "./entities/Vendor.js";
+import { Build } from "./entities/Build.js";
 import dotenv from "dotenv";
 dotenv.config();
 const DB_PWD = process.env.DB_PASSWORD;
@@ -16,7 +17,7 @@ export const AppDataSource = new DataSource({
     database: "Cloud and Devops Final DB",
     synchronize: false,
     logging: true,
-    entities: [Plant, Component, Part, User, Vendor],
+    entities: [Plant, Component, Part, User, Vendor, Build],
     options: {
         encrypt: true,
         trustServerCertificate: false,

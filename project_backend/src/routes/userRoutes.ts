@@ -1,3 +1,5 @@
+import {checkBearerToken} from "../utils/Utils.js";
+
 export { router as userRouter }
 
 import express from 'express';
@@ -5,7 +7,6 @@ import bcrypt from 'bcrypt';
 import {AppDataSource} from "../data-source.js";
 import {User} from "../entities/User.js";
 import jwt from 'jsonwebtoken';
-import {checkBearerToken} from "../server.js";
 
 const router = express.Router();
 /* Body already parsed by app.use(bodyParser.json()) in server.ts - do not parse again or req.body can be lost */

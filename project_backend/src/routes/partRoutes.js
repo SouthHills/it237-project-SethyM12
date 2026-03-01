@@ -1,9 +1,9 @@
+import { checkBearerToken } from "../utils/Utils.js";
 export { router as partRouter };
 import express from 'express';
 import bodyParser from 'body-parser';
 import { AppDataSource } from "../data-source.js";
 import { Part } from "../entities/Part.js";
-import { checkBearerToken } from "../server.js";
 const router = express.Router();
 router.use(bodyParser.json());
 const secretKey = 'j3?gRac8wDo6tr0G';

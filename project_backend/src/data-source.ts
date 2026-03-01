@@ -19,7 +19,7 @@ export const AppDataSource = new DataSource({
     database: "Cloud and Devops Final DB",
     synchronize: false,
     logging: true,
-    entities: [Plant, Component, Part, User, Vendor],
+    entities: [Plant, Component, Part, User, Vendor, Build],
     options: {
         encrypt: true,
         trustServerCertificate: false,
