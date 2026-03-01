@@ -4,13 +4,23 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import { AppDataSource } from "../data-source.js";
 import { Plant } from "../entities/Plant.js";
+import { checkBearerToken } from "../server.js";
 const router = express.Router();
 router.use(bodyParser.json());
+const secretKey = 'j3?gRac8wDo6tr0G';
 router.get("/", async (req, res) => {
+    const authHeader = req.headers['authorization'];
+    if (!checkBearerToken(authHeader, secretKey)) {
+        return res.status(401).json({ message: "Unauthorized: Invalid or missing token." });
+    }
     const plants = await AppDataSource.getRepository(Plant).find();
     res.json(plants);
 });
 router.get('plant/:id', async (req, res) => {
+    const authHeader = req.headers['authorization'];
+    if (!checkBearerToken(authHeader, secretKey)) {
+        return res.status(401).json({ message: "Unauthorized: Invalid or missing token." });
+    }
     const id = parseInt(req.params.id, 10);
     const components = await AppDataSource.getRepository(Component).find({
         where: { plantId: id }
@@ -18,6 +28,10 @@ router.get('plant/:id', async (req, res) => {
     res.json(components);
 });
 router.put('/:id', async (req, res) => {
+    const authHeader = req.headers['authorization'];
+    if (!checkBearerToken(authHeader, secretKey)) {
+        return res.status(401).json({ message: "Unauthorized: Invalid or missing token." });
+    }
     const id = parseInt(req.params.id, 10);
     const plantData = req.body;
     const plantRepository = AppDataSource.getRepository(Plant);
@@ -37,6 +51,10 @@ router.put('/:id', async (req, res) => {
     }
 });
 router.post('/', async (req, res) => {
+    const authHeader = req.headers['authorization'];
+    if (!checkBearerToken(authHeader, secretKey)) {
+        return res.status(401).json({ message: "Unauthorized: Invalid or missing token." });
+    }
     const plantData = req.body;
     const requiredFields = ['plantId', 'plantName', 'plantLocation', 'plantState'];
     if (requiredFields.some(field => plantData[field] == undefined
@@ -55,6 +73,10 @@ router.post('/', async (req, res) => {
     }
 });
 router.delete('/:id', async (req, res) => {
+    const authHeader = req.headers['authorization'];
+    if (!checkBearerToken(authHeader, secretKey)) {
+        return res.status(401).json({ message: "Unauthorized: Invalid or missing token." });
+    }
     const id = parseInt(req.params.id, 10);
     const plantRepository = AppDataSource.getRepository(Plant);
     const plant = await plantRepository.findOneBy({ plantId: id });

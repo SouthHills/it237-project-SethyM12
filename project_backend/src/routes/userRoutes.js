@@ -4,6 +4,7 @@ import bcrypt from 'bcrypt';
 import { AppDataSource } from "../data-source.js";
 import { User } from "../entities/User.js";
 import jwt from 'jsonwebtoken';
+import { checkBearerToken } from "../server.js";
 const router = express.Router();
 /* Body already parsed by app.use(bodyParser.json()) in server.ts - do not parse again or req.body can be lost */
 const SALT_ROUNDS = 10;
@@ -16,12 +17,20 @@ function sanitizeUser(user) {
     return rest;
 }
 /*Sending Sanitized User*/
-router.get('/', async (_req, res) => {
+router.get('/', async (req, res) => {
+    const authHeader = req.headers['authorization'];
+    if (!checkBearerToken(authHeader, secretKey)) {
+        return res.status(401).json({ message: "Unauthorized: Invalid or missing token." });
+    }
     const users = await AppDataSource.getRepository(User).find();
     res.json(users.map(sanitizeUser));
 });
 /*Getting a user by ID*/
 router.get('/:id', async (req, res) => {
+    const authHeader = req.headers['authorization'];
+    if (!checkBearerToken(authHeader, secretKey)) {
+        return res.status(401).json({ message: "Unauthorized: Invalid or missing token." });
+    }
     const id = parseInt(req.params.id, 10);
     const user = await AppDataSource.getRepository(User).findOneBy({ userId: id });
     if (!user) {
@@ -29,19 +38,30 @@ router.get('/:id', async (req, res) => {
     }
     res.json(sanitizeUser(user));
 });
-router.get('/login/:email/:password', async (req, res) => {
+/*router.get('/login/:email/:password', async (req, res) => {
+    const authHeader = req.headers['authorization'];
+    if (!checkBearerToken(authHeader, secretKey)) {
+        return res.status(401).json({ message: "Unauthorized: Invalid or missing token." });
+    }
+
     const plainPassword = req.params.password;
     const email = req.params.email;
     const user = await AppDataSource.getRepository(User).findOneBy({ userEmail: email });
+
+
     if (!user) {
         return res.status(404).send(`Invalid login.`);
     }
+
     const passwordMatch = await bcrypt.compare(plainPassword, user.userPassword);
+
     if (!passwordMatch) {
         return res.status(401).json({ message: "Invalid login." });
     }
+
     const bearerToken = generateBearerToken(user.userId, secretKey);
-    try {
+
+    try{
         user.userToken = bearerToken;
         await AppDataSource.getRepository(User).save(user);
     }
@@ -49,14 +69,15 @@ router.get('/login/:email/:password', async (req, res) => {
         console.error("Error saving user token: ", e);
         return res.status(500).json({ message: "Failed to save user token.", e });
     }
+
     res.json({ token: bearerToken, user: sanitizeUser(user) });
-});
+});*/
 // Create user
 router.post('/', async (req, res) => {
     const userData = req.body;
     const userRepository = AppDataSource.getRepository(User);
     /*im just adding one to the highest user id*/
-    if (userData.userId == null || userData.userId === undefined) {
+    if (userData.userId === null || userData.userId === undefined) {
         /*https://typeorm.io/docs/query-builder/select-query-builder/*/
         const maxUser = await userRepository.createQueryBuilder("user")
             .select("MAX(user.userId)", "max")
@@ -76,6 +97,10 @@ router.post('/', async (req, res) => {
 });
 /*Updating an existing User*/
 router.put('/:id', async (req, res) => {
+    const authHeader = req.headers['authorization'];
+    if (!checkBearerToken(authHeader, secretKey)) {
+        return res.status(401).json({ message: "Unauthorized: Invalid or missing token." });
+    }
     const id = parseInt(req.params.id, 10);
     const userData = req.body;
     const userRepository = AppDataSource.getRepository(User);
@@ -84,8 +109,8 @@ router.put('/:id', async (req, res) => {
         return res.status(404).json({ message: `User with ID ${id} not found!` });
     }
     try {
-        if (userData.password) {
-            userData.password = await bcrypt.hash(userData.password, SALT_ROUNDS);
+        if (userData.userPassword) {
+            userData.userPassword = await bcrypt.hash(userData.userPassword, SALT_ROUNDS);
         }
         userRepository.merge(existingUser, userData);
         const updatedUser = await userRepository.save(existingUser);
@@ -108,10 +133,24 @@ router.post('/login', async (req, res) => {
     if (!passwordMatch) {
         return res.status(401).json({ success: false, message: 'Invalid email or password' }); /*401 code is used authentication failures*/
     }
-    res.json({ success: true, message: 'Login successful', user: sanitizeUser(user) });
+    // Generate a new token on successful login
+    const bearerToken = generateBearerToken(user.userId, secretKey);
+    try {
+        user.userToken = bearerToken;
+        await userRepository.save(user);
+    }
+    catch (e) {
+        console.error("Error saving user token: ", e);
+        return res.status(500).json({ success: false, message: "Failed to save user token.", e });
+    }
+    res.json({ success: true, message: 'Login successful', user: sanitizeUser(user), token: bearerToken });
 });
 /*Deleting using by ID here*/
 router.delete('/:id', async (req, res) => {
+    const authHeader = req.headers['authorization'];
+    if (!checkBearerToken(authHeader, secretKey)) {
+        return res.status(401).json({ message: "Unauthorized: Invalid or missing token." });
+    }
     const id = parseInt(req.params.id, 10);
     const userRepository = AppDataSource.getRepository(User);
     const user = await userRepository.findOneBy({ userId: id });

@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {UserModel} from '../models/user.model';
 import {ComponentModel} from '../models/component.model';
+import {PartModel} from '../models/part.model';
 
 @Injectable({
   providedIn: 'root',
@@ -69,6 +70,25 @@ export class User
   }
 
   private plantsUrl = 'http://localhost:3000/parts';
+
+  getAllParts(): Observable<any> {
+    return this.http.get<any>(this.plantsUrl);
+  }
+
+  createPart(partObject: any): Observable<any> {
+    return this.http.post(this.plantsUrl, {partId: partObject.partId, partName: partObject.partName,
+      partQuantity: partObject.partQuantity, partSpecs: partObject.partSpecs, vendorId: partObject.vendorId});
+  }
+
+  updatePart(partId: number, partObject: PartModel): Observable<any> {
+    return this.http.put(`${this.plantsUrl}/${partId}`, {partId: partId,
+      partName: partObject.partName, partQuantity: partObject.partQuantity,
+      plantId: partObject.vendorId});
+  }
+
+  deletePart(partId: number): Observable<any> {
+    return this.http.delete(`${this.plantsUrl}/${partId}`);
+  }
 
   getPartsByPlantId(plantId: string): Observable<any> {
     const url = `${this.plantsUrl}/plant/${plantId}`;

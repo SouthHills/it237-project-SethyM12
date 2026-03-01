@@ -54,16 +54,16 @@
               {{ component.compId }}
             </td>
             <td>
-              <input [ngModel]="component.compName" (ngModelChange)="component.compName = $event" />
+              <input [(ngModel)]="component.compName"/>
             </td>
             <td>
-              <input [ngModel]="component.compQuantity" (ngModelChange)="component.compQuantity = $event" />
+              <input [(ngModel)]="component.compQuantity" />
             </td>
             <td>
-              <input [ngModel]="component.compSpecs" (ngModelChange)="component.compSpecs = $event" />
+              <input [(ngModel)]="component.compSpecs" />
             </td>
             <td>
-              <input [ngModel]="component.plantId" (ngModelChange)="component.plantId = $event" />
+              <input [(ngModel)]="component.plantId" />
             </td>
 
             <td class="d-flex justify-content-end gap-2">
