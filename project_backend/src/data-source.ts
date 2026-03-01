@@ -14,7 +14,7 @@ export const AppDataSource = new DataSource({
     host: "cloudanddevops.database.windows.net",
     port: 1433,
     username: "sliggett24",
-    password: `${DB_PWD}`,
+    password: "ABC123!!",
     database: "Cloud and Devops Final DB",
     synchronize: false,
     logging: true,
@@ -29,7 +29,3 @@ export const AppDataSource = new DataSource({
         },
     },
 });
-
-export function checkBearerToken(){
-
-}

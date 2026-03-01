@@ -4,18 +4,31 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import {AppDataSource} from "../data-source.js";
 import {Component} from "../entities/Component.js";
+import {checkBearerToken} from "../server.js";
+
 const router = express.Router();
 
 router.use(bodyParser.json());
 
-router.get('/', async (req, res) => {
-    const components = await AppDataSource.getRepository(Component).find();
+const secretKey = 'j3?gRac8wDo6tr0G';
 
+router.get('/', async (req, res) => {
+    const authHeader = req.headers['authorization'];
+    if (!checkBearerToken(authHeader, secretKey)) {
+        return res.status(401).json({ message: "Unauthorized: Invalid or missing token." });
+    }
+
+    const components = await AppDataSource.getRepository(Component).find();
     res.json(components);
 });
 
 /*returning components by plant id - must be before /:id so "plant" is not matched as id*/
 router.get('/plant/:plantId', async (req, res) => {
+    const authHeader = req.headers['authorization'];
+    if (!checkBearerToken(authHeader, secretKey)) {
+        return res.status(401).json({ message: "Unauthorized: Invalid or missing token." });
+    }
+
     const plantId = parseInt(req.params.plantId, 10);
     const components = await AppDataSource.getRepository(Component).findBy({
         plantId
@@ -24,6 +37,11 @@ router.get('/plant/:plantId', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
+    const authHeader = req.headers['authorization'];
+    if (!checkBearerToken(authHeader, secretKey)) {
+        return res.status(401).json({ message: "Unauthorized: Invalid or missing token." });
+    }
+
     const id = parseInt(req.params.id);
     const component = await AppDataSource.getRepository(Component).findOneBy({
         compId: id
@@ -36,6 +54,11 @@ router.get('/:id', async (req, res) => {
 });
 
 router.put('/:id', async (req, res) => {
+    const authHeader = req.headers['authorization'];
+    if (!checkBearerToken(authHeader, secretKey)) {
+        return res.status(401).json({ message: "Unauthorized: Invalid or missing token." });
+    }
+
     const id = parseInt(req.params.id);
     const componentData = req.body;
 
@@ -60,8 +83,12 @@ router.put('/:id', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    const componentData = req.body;
+    const authHeader = req.headers['authorization'];
+    if (!checkBearerToken(authHeader, secretKey)) {
+        return res.status(401).json({ message: "Unauthorized: Invalid or missing token." });
+    }
 
+    const componentData = req.body;
     const requiredFields = ['compId', 'compName', 'compQuantity', 'compSpecs'];
 
     const componentRepository = AppDataSource.getRepository(Component);
@@ -94,8 +121,12 @@ router.post('/', async (req, res) => {
 });
 
 router.delete('/:id', async (req, res) => {
-    const id = parseInt(req.params.id);
+    const authHeader = req.headers['authorization'];
+    if (!checkBearerToken(authHeader, secretKey)) {
+        return res.status(401).json({ message: "Unauthorized: Invalid or missing token." });
+    }
 
+    const id = parseInt(req.params.id);
     const componentRepository = AppDataSource.getRepository(Component);
     const existingComponent = await componentRepository.findOneBy({compId: id});
 

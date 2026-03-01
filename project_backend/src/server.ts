@@ -7,6 +7,7 @@ import {partRouter} from "./routes/partRoutes.js";
 import {userRouter} from "./routes/userRoutes.js";
 import {vendorRouter} from "./routes/vendorRoutes.js";
 import {plantRouter} from "./routes/plantRoutes.js";
+import jwt from "jsonwebtoken";
 
 const app = express();
 const port: number = 3000;
@@ -32,3 +33,22 @@ AppDataSource.initialize()
     .catch((error: any) => {
         console.error("Error during data source initialization: ", error);
     });
+
+export function checkBearerToken(sentToken: string | undefined, secretKey: string): boolean {
+    if (!sentToken) {
+        return false;
+    }
+
+    try {
+        const tokenParts = sentToken.split(' ');
+        if (tokenParts.length !== 2 || tokenParts[0] !== 'Bearer') {
+            return false;
+        }
+        const token = tokenParts[1];
+        const decoded: any = jwt.verify(token, secretKey);
+        return !!decoded.userId;
+    } catch (error) {
+        console.error("Error verifying token: ", error);
+        return false;
+    }
+}
