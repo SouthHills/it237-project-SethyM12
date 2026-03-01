@@ -4,6 +4,7 @@ import { Component } from "./entities/Component.js";
 import { Part } from "./entities/Part.js";
 import { User } from "./entities/User.js";
 import { Vendor } from "./entities/Vendor.js";
+import { Build } from "./entities/Build.js";
 
 import dotenv from "dotenv";
 dotenv.config();
