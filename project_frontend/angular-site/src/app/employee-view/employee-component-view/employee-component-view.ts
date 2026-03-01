@@ -57,4 +57,6 @@ export class EmployeeComponentView {
       });
     }
   }
+
+  protected readonly parseInt = parseInt;
 }

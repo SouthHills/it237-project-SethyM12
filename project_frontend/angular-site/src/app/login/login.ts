@@ -39,9 +39,11 @@ export class Login {
       next: (response) => {
         response = response.user
 
-        if(response.userRoleManager === 1)
+        console.log(response.userRoleManager);
+
+        if(response.userRoleManager === true)
         {
-          this.router.navigate(['/manager']);
+          this.router.navigate(['/manager-user-view']);
         }
         else
         {
