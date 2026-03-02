@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {RouterLink, RouterLinkActive} from '@angular/router';
+import {Router, RouterLink, RouterLinkActive} from '@angular/router';
 
 @Component({
   selector: 'app-manager-navbar',
@@ -12,8 +12,10 @@ import {RouterLink, RouterLinkActive} from '@angular/router';
   standalone: true
 })
 export class ManagerNavbar {
+  constructor(private router: Router) { }
 
   logout() : void{
     localStorage.removeItem('token');
+    this.router.navigate(['/login']);
   }
 }

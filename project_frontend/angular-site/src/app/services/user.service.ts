@@ -56,7 +56,7 @@ export class User
     return this.http.put(`${this.componentsUrl}/${componentId}`, {componentId: componentId,
       componentName: componentObject.compName, compQuantity: componentObject.compQuantity,
       plantId: componentObject.plantId},
-      {headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } });
+      {headers: { Authorization: `Bearer ${authentication}` } });
   }
 
   deleteComponent(componentId: number, authentication: string | null): Observable<any> {
