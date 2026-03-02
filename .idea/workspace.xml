@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e4fc310b-3882-4a68-b170-8d03f07037a3" name="Changes" comment="" />
+    <list default="true" id="e4fc310b-3882-4a68-b170-8d03f07037a3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_backend/.idea/jsLibraryMappings.xml" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,12 +20,14 @@
   <component name="CopilotPersistence">
     <persistenceIdMap>
       <entry key="_/Users/alexsawyer/Documents/current_courses/devOps/projects/it237-project-SethyM12" value="38AgnKovQbRTEUzgkYWkiPPmwuS" />
+      <entry key="_/home/smiles/Documents/GitHub/it237-project-SethyM12" value="3AOsZPYnGFG4MUuf9lExfpA4fih" />
     </persistenceIdMap>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="TypeScript File" />
+        <option value="GitHub Workflow" />
       </list>
     </option>
   </component>
@@ -45,6 +51,9 @@
   &quot;associatedIndex&quot;: 1
 }</component>
   <component name="ProjectId" id="38AgnKovQbRTEUzgkYWkiPPmwuS" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -56,7 +65,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "git-widget-placeholder": "develop",
+    "git-widget-placeholder": "serverside",
     "last_opened_file_path": "/home/smiles/Documents/GitHub/it237-project-SethyM12",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -88,8 +97,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-PS-253.30387.85" />
-        <option value="bundled-php-predefined-a98d8de5180a-0e0d91225499-com.jetbrains.php.sharedIndexes-PS-253.30387.85" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-PS-253.31033.138" />
+        <option value="bundled-php-predefined-a98d8de5180a-0e0d91225499-com.jetbrains.php.sharedIndexes-PS-253.31033.138" />
       </set>
     </attachedChunks>
   </component>
@@ -111,19 +120,12 @@
       <workItem from="1771353732417" duration="3720000" />
       <workItem from="1771370905881" duration="3171000" />
       <workItem from="1771394497362" duration="339000" />
+      <workItem from="1772475004952" duration="1540000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="github-copilot-workspace">
-    <instructionFileLocations>
-      <option value=".github/instructions" />
-    </instructionFileLocations>
-    <promptFileLocations>
-      <option value=".github/prompts" />
-    </promptFileLocations>
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
