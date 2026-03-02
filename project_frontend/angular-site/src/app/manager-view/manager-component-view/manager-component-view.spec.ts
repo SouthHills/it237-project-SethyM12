@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ManagerView } from './manager-view';
+import { ManagerComponentView } from './manager-component-view';
 
-describe('ManagerView', () => {
-  let component: ManagerView;
-  let fixture: ComponentFixture<ManagerView>;
+describe('ManagerComponentView', () => {
+  let component: ManagerComponentView;
+  let fixture: ComponentFixture<ManagerComponentView>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ManagerView]
+      imports: [ManagerComponentView]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ManagerView);
+    fixture = TestBed.createComponent(ManagerComponentView);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

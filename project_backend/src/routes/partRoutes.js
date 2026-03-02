@@ -1,3 +1,4 @@
+import { checkBearerToken } from "../utils/Utils.js";
 export { router as partRouter };
 import express from 'express';
 import bodyParser from 'body-parser';
@@ -5,12 +6,42 @@ import { AppDataSource } from "../data-source.js";
 import { Part } from "../entities/Part.js";
 const router = express.Router();
 router.use(bodyParser.json());
+const secretKey = 'j3?gRac8wDo6tr0G';
 router.get('/', async (req, res) => {
+    const authHeader = req.headers['authorization'];
+    if (!checkBearerToken(authHeader, secretKey)) {
+        return res.status(401).json({ message: "Unauthorized: Invalid or missing token." });
+    }
     const partRepository = AppDataSource.getRepository(Part);
     const parts = await partRepository.find();
     res.json(parts);
 });
+router.get('/plant/:id', async (req, res) => {
+    const authHeader = req.headers['authorization'];
+    if (!checkBearerToken(authHeader, secretKey)) {
+        return res.status(401).json({ message: "Unauthorized: Invalid or missing token." });
+    }
+    try {
+        const id = parseInt(req.params.id, 10);
+        const partRepository = AppDataSource.getRepository(Part);
+        const parts = await partRepository
+            .createQueryBuilder("part")
+            .innerJoin("BUILD", "build", "build.PART_ID = part.partId")
+            .innerJoin("COMPONENT", "comp", "comp.COMP_ID = build.COMP_ID")
+            .where("comp.PLANT_ID = :id", { id })
+            .getMany();
+        res.json(parts);
+    }
+    catch (e) {
+        console.error("Error fetching parts by plant ID: ", e);
+        res.status(500).json({ message: "Failed to fetch parts by plant ID.", e });
+    }
+});
 router.get('/:id', async (req, res) => {
+    const authHeader = req.headers['authorization'];
+    if (!checkBearerToken(authHeader, secretKey)) {
+        return res.status(401).json({ message: "Unauthorized: Invalid or missing token." });
+    }
     const id = parseInt(req.params.id, 10);
     const part = await AppDataSource.getRepository(Part).findOneBy({
         partId: id
@@ -21,6 +52,10 @@ router.get('/:id', async (req, res) => {
     res.json(part);
 });
 router.put('/:id', async (req, res) => {
+    const authHeader = req.headers['authorization'];
+    if (!checkBearerToken(authHeader, secretKey)) {
+        return res.status(401).json({ message: "Unauthorized: Invalid or missing token." });
+    }
     const id = parseInt(req.params.id, 10);
     const partData = req.body;
     const partRepository = AppDataSource.getRepository(Part);
@@ -40,6 +75,10 @@ router.put('/:id', async (req, res) => {
     }
 });
 router.post('/', async (req, res) => {
+    const authHeader = req.headers['authorization'];
+    if (!checkBearerToken(authHeader, secretKey)) {
+        return res.status(401).json({ message: "Unauthorized: Invalid or missing token." });
+    }
     const partData = req.body;
     const requiredFields = ['partId', 'partName', 'partQuantity', 'partSpecs'];
     if (requiredFields.some(field => partData[field] == undefined
@@ -59,6 +98,10 @@ router.post('/', async (req, res) => {
     }
 });
 router.delete('/:id', async (req, res) => {
+    const authHeader = req.headers['authorization'];
+    if (!checkBearerToken(authHeader, secretKey)) {
+        return res.status(401).json({ message: "Unauthorized: Invalid or missing token." });
+    }
     const id = parseInt(req.params.id, 10);
     const partRepository = AppDataSource.getRepository(Part);
     const existingPart = await partRepository.findOneBy({ partId: id });

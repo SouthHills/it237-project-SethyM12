@@ -1,3 +1,4 @@
+import { checkBearerToken } from "../utils/Utils.js";
 export { router as vendorRouter };
 import express from 'express';
 import bodyParser from 'body-parser';
@@ -5,11 +6,20 @@ import { AppDataSource } from "../data-source.js";
 import { Vendor } from "../entities/Vendor.js";
 const router = express.Router();
 router.use(bodyParser.json());
+const secretKey = 'j3?gRac8wDo6tr0G';
 router.get('/', async (req, res) => {
+    const authHeader = req.headers['authorization'];
+    if (!checkBearerToken(authHeader, secretKey)) {
+        return res.status(401).json({ message: "Unauthorized: Invalid or missing token." });
+    }
     const vendors = await AppDataSource.getRepository(Vendor).find();
     res.json(vendors);
 });
 router.get('/:id', async (req, res) => {
+    const authHeader = req.headers['authorization'];
+    if (!checkBearerToken(authHeader, secretKey)) {
+        return res.status(401).json({ message: "Unauthorized: Invalid or missing token." });
+    }
     const id = parseInt(req.params.id, 10);
     const vendor = await AppDataSource.getRepository(Vendor).findOneBy({
         vendorId: id
@@ -22,6 +32,10 @@ router.get('/:id', async (req, res) => {
     }
 });
 router.put('/:id', async (req, res) => {
+    const authHeader = req.headers['authorization'];
+    if (!checkBearerToken(authHeader, secretKey)) {
+        return res.status(401).json({ message: "Unauthorized: Invalid or missing token." });
+    }
     const id = parseInt(req.params.id, 10);
     const vendorData = req.body;
     const vendorRepository = AppDataSource.getRepository(Vendor);
@@ -41,6 +55,10 @@ router.put('/:id', async (req, res) => {
     }
 });
 router.post('/', async (req, res) => {
+    const authHeader = req.headers['authorization'];
+    if (!checkBearerToken(authHeader, secretKey)) {
+        return res.status(401).json({ message: "Unauthorized: Invalid or missing token." });
+    }
     const vendorData = req.body;
     const requiredFields = ['vendorId', 'vendorName', 'vendorCity', 'vendorState'];
     if (requiredFields.some(field => vendorData[field] == undefined
@@ -59,6 +77,10 @@ router.post('/', async (req, res) => {
     }
 });
 router.delete('/:id', async (req, res) => {
+    const authHeader = req.headers['authorization'];
+    if (!checkBearerToken(authHeader, secretKey)) {
+        return res.status(401).json({ message: "Unauthorized: Invalid or missing token." });
+    }
     const id = parseInt(req.params.id, 10);
     const vendorRepository = AppDataSource.getRepository(Vendor);
     const vendor = await vendorRepository.findOneBy({ vendorId: id });
