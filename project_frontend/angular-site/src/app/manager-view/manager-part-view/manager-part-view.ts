@@ -46,7 +46,8 @@ export class ManagerPartView {
     const newPart = {
       ...this.partObject,
     }
-    this.userService.createPart(newPart).subscribe({
+    const authentication = localStorage.getItem('token');
+    this.userService.createPart(newPart,authentication).subscribe({
       next: () => {
         console.log(`Part created successfully.`);
         this.getParts();
@@ -66,7 +67,9 @@ export class ManagerPartView {
     });
   }
   getParts(): void {
-    this.userService.getAllParts().subscribe({
+    const authentication = localStorage.getItem('token');
+
+    this.userService.getAllParts(authentication).subscribe({
       next: (response) => {
         console.log(response);
         this.parts.set(response);
@@ -78,7 +81,8 @@ export class ManagerPartView {
     });
   }
   updatePart(partId: number, partObject: PartModel): void {
-    this.userService.updatePart(partId, partObject).subscribe({
+    const authentication = localStorage.getItem('token');
+    this.userService.updatePart(partId, partObject, authentication).subscribe({
       next: () => {
         console.log(`Part with ID ${partId} updated successfully.`);
         this.getParts();
@@ -91,7 +95,8 @@ export class ManagerPartView {
     })
   }
   deletePart(id: number): void {
-    this.userService.deletePart(id).subscribe({
+    const authentication = localStorage.getItem('token');
+    this.userService.deletePart(id, authentication).subscribe({
       next: () => {
         console.log(`Part with ID ${id} deleted successfully.`);
         this.getParts();

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {RouterLink, RouterLinkActive} from "@angular/router";
+import {Router, RouterLink, RouterLinkActive} from "@angular/router";
 
 @Component({
   selector: 'app-employee-navbar',
@@ -12,4 +12,11 @@ import {RouterLink, RouterLinkActive} from "@angular/router";
 })
 export class EmployeeNavbar {
 
+  constructor(private router: Router) { }
+
+  logout(): void {
+    localStorage.removeItem('plantId');
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
+  }
 }

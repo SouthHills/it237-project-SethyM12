@@ -43,9 +43,10 @@ export class EmployeePartView {
 
   getParts(): void {
     const plantId = this.getPlantIdFromLocalStorage();
+    const authentication = localStorage.getItem('token');
     if (plantId)
     {
-      this.userService.getPartsByPlantId(plantId).subscribe({
+      this.userService.getPartsByPlantId(plantId, authentication).subscribe({
         next: (response) => {
           console.log(this.parts);
           this.parts.set(response);

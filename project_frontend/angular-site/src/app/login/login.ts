@@ -41,6 +41,8 @@ export class Login {
 
         console.log(response.userRoleManager);
 
+        localStorage.setItem('token', response.userToken);
+
         if(response.userRoleManager === true)
         {
           this.router.navigate(['/manager-user-view']);
