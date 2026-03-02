@@ -13,4 +13,7 @@ import {RouterLink, RouterLinkActive} from '@angular/router';
 })
 export class ManagerNavbar {
 
+  logout() : void{
+    localStorage.removeItem('token');
+  }
 }

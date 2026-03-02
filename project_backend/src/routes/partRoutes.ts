@@ -21,6 +21,7 @@ router.get('/', async (req, res) => {
 
     const partRepository = AppDataSource.getRepository(Part);
     const parts = await partRepository.find();
+
     res.json(parts);
 });
 
@@ -113,6 +114,16 @@ router.post('/', async (req, res) => {
     }
 
     const partRepository = AppDataSource.getRepository(Part);
+
+    if (partData.partId == null || partData.partId === undefined || partData.partId === 0)
+    {
+        /*https://typeorm.io/docs/query-builder/select-query-builder/*/
+        const maxPart = await partRepository.createQueryBuilder("part")
+            .select("MAX(part.PART_ID)", "max")
+            .getRawOne();
+
+        partData.partId = maxPart.max + 1;
+    }
 
     try{
         const newPart = partRepository.create(partData);

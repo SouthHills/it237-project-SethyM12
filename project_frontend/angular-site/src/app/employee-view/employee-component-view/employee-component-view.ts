@@ -44,7 +44,8 @@ export class EmployeeComponentView {
     const plantId = this.getPlantIdFromLocalStorage();
     if (plantId)
     {
-      this.userService.getComponentsByPlantId(plantId).subscribe({
+      const authentication = localStorage.getItem('token');
+      this.userService.getComponentsByPlantId(plantId, authentication).subscribe({
         next: (response) => {
           console.log(this.components);
           this.components.set(response);

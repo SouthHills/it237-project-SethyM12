@@ -4,82 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e4fc310b-3882-4a68-b170-8d03f07037a3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.github/workflows/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.ask2agent.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_backend/.idea/material_theme_project_new.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_backend/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_backend/src/entities/Component.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_backend/src/entities/Part.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_backend/src/entities/Plant.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_backend/src/entities/User.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_backend/src/entities/Vendor.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_backend/src/routes/componentRoutes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_backend/src/routes/partRoutes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_backend/src/routes/plantRoutes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_backend/src/routes/userRoutes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_backend/src/routes/vendorRoutes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_backend/src/server.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_frontend/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_frontend/.idea/copilot.data.migration.ask2agent.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_frontend/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_frontend/.idea/material_theme_project_new.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_frontend/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_frontend/.idea/php.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_frontend/.idea/project_frontend.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_frontend/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_frontend/angular-site/public/light_blue_background2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_frontend/angular-site/src/app/employee-navbar/employee-navbar.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_frontend/angular-site/src/app/employee-navbar/employee-navbar.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_frontend/angular-site/src/app/employee-navbar/employee-navbar.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_frontend/angular-site/src/app/employee-navbar/employee-navbar.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_frontend/angular-site/src/app/employee-view/employee-component-view/employee-component-view.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_frontend/angular-site/src/app/employee-view/employee-component-view/employee-component-view.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_frontend/angular-site/src/app/employee-view/employee-component-view/employee-component-view.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_frontend/angular-site/src/app/employee-view/employee-part-view/employee-part-view.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_frontend/angular-site/src/app/employee-view/employee-part-view/employee-part-view.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_frontend/angular-site/src/app/employee-view/employee-part-view/employee-part-view.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_frontend/angular-site/src/app/manager-navbar/manager-navbar.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_frontend/angular-site/src/app/manager-navbar/manager-navbar.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_frontend/angular-site/src/app/manager-navbar/manager-navbar.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_frontend/angular-site/src/app/manager-navbar/manager-navbar.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_frontend/angular-site/src/app/models/component.model.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_frontend/angular-site/src/app/models/user.model.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_frontend/angular-site/src/app/register/register.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_frontend/angular-site/src/app/register/register.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_frontend/angular-site/src/app/register/register.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_frontend/angular-site/src/app/services/user.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_frontend/angular-site/src/app/user/user.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_frontend/angular-site/src/app/user/user.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_frontend/angular-site/src/app/user/user.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bridge table(BUILD).sql" beforeDir="false" afterPath="$PROJECT_DIR$/Bridge table(BUILD).sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/project_backend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/project_backend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_backend/src/data-source.ts" beforeDir="false" afterPath="$PROJECT_DIR$/project_backend/src/data-source.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_backend/src/entities/Part.ts" beforeDir="false" afterPath="$PROJECT_DIR$/project_backend/src/entities/Part.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_backend/src/routes/userRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/project_backend/src/routes/userRoutes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_backend/src/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/project_backend/src/server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_frontend/angular-site/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/project_frontend/angular-site/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_frontend/angular-site/public/grey_background.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_frontend/angular-site/src/app/app.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/project_frontend/angular-site/src/app/app.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_frontend/angular-site/src/app/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/project_frontend/angular-site/src/app/app.routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_frontend/angular-site/src/app/employee-view/employee-view.css" beforeDir="false" afterPath="$PROJECT_DIR$/project_frontend/angular-site/src/app/employee-view/employee-component-view/employee-component-view.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_frontend/angular-site/src/app/employee-view/employee-view.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_frontend/angular-site/src/app/employee-view/employee-view.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/project_frontend/angular-site/src/app/register/register.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_frontend/angular-site/src/app/employee-view/employee-view.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_frontend/angular-site/src/app/home/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/project_frontend/angular-site/src/app/home/home.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_frontend/angular-site/src/app/home/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/project_frontend/angular-site/src/app/home/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_frontend/angular-site/src/app/login/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/project_frontend/angular-site/src/app/login/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_frontend/angular-site/src/app/login/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/project_frontend/angular-site/src/app/login/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_frontend/angular-site/src/app/login/login.ts" beforeDir="false" afterPath="$PROJECT_DIR$/project_frontend/angular-site/src/app/login/login.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_frontend/angular-site/src/app/navbar/navbar.css" beforeDir="false" afterPath="$PROJECT_DIR$/project_frontend/angular-site/src/app/employee-view/employee-part-view/employee-part-view.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_frontend/angular-site/src/app/navbar/navbar.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_frontend/angular-site/src/app/navbar/navbar.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/project_frontend/angular-site/src/app/user/user.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_frontend/angular-site/src/app/navbar/navbar.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_frontend/angular-site/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/project_frontend/angular-site/src/index.html" afterDir="false" />
-    </list>
+    <list default="true" id="e4fc310b-3882-4a68-b170-8d03f07037a3" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -124,25 +49,6 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-<<<<<<< HEAD
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Merging develop&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/alexsawyer/Documents/current_courses/devOps/projects/it237-project-SethyM12&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.start.executor&quot;: &quot;Run&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/alexsawyer/Documents/current_courses/devOps/projects/it237-project-SethyM12/project_frontend/angular-site/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-=======
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
@@ -160,9 +66,8 @@
     "npm.start.executor": "Run",
     "ts.external.directory.path": "/Users/alexsawyer/Documents/current_courses/devOps/projects/it237-project-SethyM12/project_frontend/angular-site/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
->>>>>>> a83a8aee4ae61491dae9e69fabee205476642866
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/project_backend/package.json" />
@@ -183,17 +88,11 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-<<<<<<< HEAD
-        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.20224.419" />
-        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-IU-242.20224.419" />
-=======
         <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-PS-253.30387.85" />
         <option value="bundled-php-predefined-a98d8de5180a-0e0d91225499-com.jetbrains.php.sharedIndexes-PS-253.30387.85" />
->>>>>>> a83a8aee4ae61491dae9e69fabee205476642866
       </set>
     </attachedChunks>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="e4fc310b-3882-4a68-b170-8d03f07037a3" name="Changes" comment="" />
@@ -212,8 +111,6 @@
       <workItem from="1771353732417" duration="3720000" />
       <workItem from="1771370905881" duration="3171000" />
       <workItem from="1771394497362" duration="339000" />
-      <workItem from="1771959190826" duration="12000" />
-      <workItem from="1771959217725" duration="8000" />
     </task>
     <servers />
   </component>

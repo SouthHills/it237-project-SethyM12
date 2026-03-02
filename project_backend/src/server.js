@@ -8,7 +8,7 @@ import { userRouter } from "./routes/userRoutes.js";
 import { vendorRouter } from "./routes/vendorRoutes.js";
 import { plantRouter } from "./routes/plantRoutes.js";
 import { buildRouter } from "./routes/buildRoutes.js";
-const app = express();
+export const app = express();
 const port = 3000;
 app.use(cors());
 app.use(bodyParser.json());

@@ -34,7 +34,8 @@ export class ManagerComponentView {
   errorMessage = signal<string>('');
 
   getComponents(): void {
-    this.userService.getAllComponents().subscribe({
+    const authentication = localStorage.getItem('token');
+    this.userService.getAllComponents(authentication).subscribe({
       next: (response) => {
         console.log(response);
         this.components.set(response);
@@ -48,7 +49,8 @@ export class ManagerComponentView {
   }
 
   updateComponent(componentId: number, componentObject: ComponentModel): void {
-    this.userService.updateComponent(componentId, componentObject).subscribe({
+    const authentication = localStorage.getItem('token');
+    this.userService.updateComponent(componentId, componentObject, authentication).subscribe({
       next: () => {
         console.log(`Component with ID ${componentId} updated successfully.`);
         this.getComponents();
@@ -63,7 +65,8 @@ export class ManagerComponentView {
 
   deleteComponent(componentId: number): void
   {
-    this.userService.deleteComponent(componentId).subscribe({
+    const authentication = localStorage.getItem('token');
+    this.userService.deleteComponent(componentId, authentication).subscribe({
       next: () => {
         console.log(`Component with ID ${componentId} deleted successfully.`);
         this.getComponents();
@@ -89,7 +92,8 @@ export class ManagerComponentView {
     const newComponent = {
       ...this.componentObject
     }
-    this.userService.createComponent(newComponent).subscribe({
+    const authentication = localStorage.getItem('token');
+    this.userService.createComponent(newComponent, authentication).subscribe({
       next: () => {
         console.log(`Component created successfully.`);
         this.getComponents();

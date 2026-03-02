@@ -30,7 +30,8 @@ export class ManagerUserView
 
 
   getUsers(): void {
-    this.userService.getUsers().subscribe({
+    const authentication = localStorage.getItem('token');
+    this.userService.getUsers(authentication).subscribe({
       next: (response) => {
         console.log(response);
         this.users.set(response);
@@ -44,7 +45,8 @@ export class ManagerUserView
   }
 
   updateUser(userId: number, userObject: UserModel ): void {
-    this.userService.updateUser(userId, userObject).subscribe({
+    const authentication = localStorage.getItem('token');
+    this.userService.updateUser(userId, userObject, authentication).subscribe({
       next: () => {
         console.log(`User with ID ${userId} updated successfully.`);
         this.getUsers();
@@ -58,7 +60,8 @@ export class ManagerUserView
   }
 
   deleteUser(userId: number): void {
-    this.userService.deleteUser(userId).subscribe({
+    const authentication = localStorage.getItem('token');
+    this.userService.deleteUser(userId, authentication).subscribe({
       next: () => {
         console.log(`User with ID ${userId} deleted successfully.`);
         this.getUsers();

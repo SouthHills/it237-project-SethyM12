@@ -6,10 +6,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { Column, Entity, PrimaryColumn } from "typeorm";
 let Plant = class Plant {
-    plantId;
-    plantName;
-    plantLocation;
-    plantState;
 };
 __decorate([
     PrimaryColumn({ name: "PLANT_ID", type: "int", nullable: false })
