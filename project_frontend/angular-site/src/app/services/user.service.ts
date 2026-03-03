@@ -35,9 +35,10 @@ export class User
       { headers: { Authorization: `Bearer ${authentication}` } });
   }
 
-  registerUser(userData: object): Observable<UserModel>
+  createUser(userData: object, authentication: string | null): Observable<UserModel>
   {
-    return this.http.post<UserModel>(this.apiUrl, userData);
+    return this.http.post<UserModel>(this.apiUrl, userData,
+      { headers: { Authorization: `Bearer ${authentication}` } });
   }
 
   loginUser(email: string, password: string, ): Observable<any>
@@ -105,6 +106,65 @@ export class User
     const url = `${this.plantsUrl}/plant/${plantId}`;
     return this.http.get<any>(url,
       { headers: { Authorization: `Bearer ${authentication}` } });
+  }
+
+  private buildsUrl = 'http://localhost:3000/builds';
+
+  getAllBuilds(authentication: string | null): Observable<any> {
+    return this.http.get<any>(this.buildsUrl,
+      {headers: { Authorization: `Bearer ${authentication}` } });
+  }
+
+  createBuild(buildObject: any, authentication : string | null): Observable<any> {
+    return this.http.post(this.buildsUrl, {compId: buildObject.compId, partId: buildObject.partId},
+      {headers: { Authorization: `Bearer ${authentication}` } });
+  }
+
+  updateBuild(compId: number, partId: number, authentication: string | null): Observable<any> {
+    return this.http.put(`${this.buildsUrl}/${partId}/${compId}`, {compId: compId, partId: partId},
+      {headers: { Authorization: `Bearer ${authentication}` } });
+  }
+
+  deleteBuild(compId: number, partId: number, authentication: string | null): Observable<any> {
+    return this.http.delete(`${this.buildsUrl}/${compId}/${partId}`,
+      {headers: { Authorization: `Bearer ${authentication}` } });
+  }
+
+  getBuildsByPlantId(plantId: string, authentication: string | null): Observable<any> {
+    const url = `${this.buildsUrl}/plant/${plantId}`;
+    return this.http.get<any>(url,
+      { headers: { Authorization: `Bearer ${authentication}` } });
+  }
+
+  private vendorsURL = 'http://localhost:3000/vendors';
+
+  getVendorsByPlantId(plantId: string, authentication: string | null): Observable<any> {
+    const url = `${this.vendorsURL}/plant/${plantId}`;
+    return this.http.get<any>(url,
+      { headers: { Authorization: `Bearer ${authentication}` } });
+  }
+
+  getAllVendors(authentication: string | null): Observable<any> {
+    return this.http.get<any>(this.vendorsURL,
+      {headers: { Authorization: `Bearer ${authentication}` } });
+  }
+
+  createVendor(vendorObject: any, authentication : string | null): Observable<any> {
+    return this.http.post(this.vendorsURL, {vendorId: vendorObject.vendorId, vendorName: vendorObject.vendorName,
+      vendorCity: vendorObject.vendorCity, vendorState: vendorObject.vendorState},
+      {headers: { Authorization: `Bearer ${authentication}` } });
+  }
+
+  updateVendor(vendorId: number, vendorObject: any, authentication: string | null): Observable<any> {
+    return this.http.put(`${this.vendorsURL}/${vendorId}`, {vendorId: vendorId,
+      vendorName: vendorObject.vendorName, vendorCity: vendorObject.vendorCity,
+      plantId: vendorObject.plantId},
+    {headers: { Authorization: `Bearer ${authentication}` } });
+  }
+
+  deleteVendor(vendorId: number, authentication: string | null): Observable<any> {
+    return this.http.delete(`${this.vendorsURL}/${vendorId}`,
+      {headers: { Authorization: `Bearer ${authentication}` } });
   }
 
 

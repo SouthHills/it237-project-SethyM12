@@ -23,6 +23,30 @@ router.get('/', async (req, res) => {
     res.json(builds);
 });
 
+router.get('/plant/:plantId', async (req, res) => {
+    const authHeader = req.headers['authorization'];
+    if (!checkBearerToken(authHeader, secretKey)) {
+        return res.status(401).json({ message: "Unauthorized: Invalid or missing token." });
+    }
+
+    try {
+        const plantId = parseInt(req.params.plantId, 10);
+
+        const builds = await AppDataSource
+            .getRepository(Build)
+            .createQueryBuilder("build")
+            .innerJoin("COMPONENT", "comp", "comp.COMP_ID = build.compId")
+            .where("comp.PLANT_ID = :plantId", { plantId })
+            .getMany();
+
+        res.json(builds);
+    }
+    catch (e) {
+        console.error("Error fetching builds by plant ID: ", e);
+        res.status(500).json({ message: "Failed to fetch builds by plant ID.", e });
+    }
+});
+
 router.get('/:partId/:compId', async (req, res) => {
     const authHeader = req.headers['authorization'];
     if (!checkBearerToken(authHeader, secretKey)) {
@@ -83,6 +107,7 @@ router.put('/:partId/:compId', async (req, res) => {
 
     const buildRepository = AppDataSource.getRepository(Build);
     const existingBuild = await buildRepository.findOneBy({partId, compId});
+
 
     if(!existingBuild) {
         res.status(404).json({ message: `Build with part ID ${partId} and component ID ${compId} not found!` });
