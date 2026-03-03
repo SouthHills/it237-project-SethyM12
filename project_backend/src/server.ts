@@ -10,7 +10,7 @@ import {plantRouter} from "./routes/plantRoutes.js";
 import {buildRouter} from "./routes/buildRoutes.js";
 
 export const app = express();
-const port: number = 3000;
+const port: number = process.env.PORT ? parseInt(process.env.PORT) : 3000;
 
 app.use(cors());
 
