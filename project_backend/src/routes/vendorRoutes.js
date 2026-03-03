@@ -15,6 +15,25 @@ router.get('/', async (req, res) => {
     const vendors = await AppDataSource.getRepository(Vendor).find();
     res.json(vendors);
 });
+router.get('/plant/:plantId', async (req, res) => {
+    const plantId = parseInt(req.params.plantId, 10);
+    try {
+        const vendors = await AppDataSource
+            .getRepository(Vendor)
+            .createQueryBuilder('vendor')
+            .innerJoin('PART', 'part', 'part.VENDOR_ID = vendor.vendorId')
+            .innerJoin('BUILD', 'build', 'build.PART_ID = part.PART_ID')
+            .innerJoin('COMPONENT', 'comp', 'comp.COMP_ID = build.COMP_ID')
+            .where('comp.PLANT_ID = :plantId', { plantId })
+            .distinct(true)
+            .getMany();
+        res.json(vendors);
+    }
+    catch (e) {
+        console.error('Error fetching vendors by plant ID:', e);
+        res.status(500).json({ message: 'Failed to fetch vendors by plant ID.', e });
+    }
+});
 router.get('/:id', async (req, res) => {
     const authHeader = req.headers['authorization'];
     if (!checkBearerToken(authHeader, secretKey)) {
@@ -66,6 +85,13 @@ router.post('/', async (req, res) => {
         return res.status(400).json({ message: `All fields are required.` });
     }
     const vendorRepository = AppDataSource.getRepository(Vendor);
+    if (vendorData.vendorId === null || vendorData.vendorId === undefined || vendorData.vendorId === 0) {
+        /*https://typeorm.io/docs/query-builder/select-query-builder/*/
+        const maxUser = await vendorRepository.createQueryBuilder("vendor")
+            .select("MAX(vendor.vendorId)", "max")
+            .getRawOne();
+        vendorData.vendorId = maxUser.max + 1;
+    }
     const newVendor = vendorRepository.create(vendorData);
     try {
         const savedVendor = await vendorRepository.save(newVendor);

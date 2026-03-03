@@ -10,11 +10,12 @@
     <table class="table table-striped table-bordered align-middle">
       <thead class="table-light">
       <tr>
-        <th>PART_ID</th>
-        <th>PART_NAME</th>
-        <th>PART_QTY</th>
-        <th>PART_SPECS</th>
-        <th>VENDOR_ID</th>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>QUANTITY</th>
+        <th>SPECS</th>
+        <th>VENDOR ID</th>
+        <th>ACTIONS</th>
       </tr>
       </thead>
       <tbody>
@@ -39,7 +40,7 @@
                  required />
         </td>
         <td>
-          <input class="form-control" id="" type="number" placeholder="plantId"
+          <input class="form-control" id="" type="number" placeholder="Vendor Id"
                  [(ngModel)]="partObject.vendorId"
                  required />
         </td>

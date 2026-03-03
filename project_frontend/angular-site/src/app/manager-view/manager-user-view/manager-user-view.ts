@@ -21,6 +21,24 @@ export class ManagerUserView
   constructor( private userService: User, private router: Router)
   {
     this.getUsers();
+    this.userObject = {
+      userId: 0,
+      userFName: '',
+      userLName: '',
+      userEmail: '',
+      userPassword: '',
+      userRoleManager: ''
+
+    };
+  }
+
+  userObject: {
+    userId: number,
+    userFName: string,
+    userLName: string,
+    userEmail: string,
+    userPassword: string,
+    userRoleManager: string
   }
 
   users = signal<UserModel[]>([]);
@@ -72,6 +90,32 @@ export class ManagerUserView
         alert(`Failed to delete user with ID ${userId}.`);
       }
     })
+  }
+
+  createUser(): void {
+    const newUser = {
+      ...this.userObject,
+    }
+    const authentication = localStorage.getItem('token');
+    this.userService.createUser(newUser, authentication).subscribe({
+      next: () => {
+        console.log(`User created successfully.`);
+        this.getUsers();
+        alert(`User created successfully.`);
+        this.userObject = {
+          userId: 0,
+          userFName: '',
+          userLName: '',
+          userEmail: '',
+          userPassword: '',
+          userRoleManager: ''
+        };
+      },
+      error: (err) => {
+        console.error('Error creating user:', err);
+        alert('Failed to create user.');
+      }
+    });
   }
 
   protected readonly parseInt = parseInt;

@@ -9,7 +9,6 @@ import {User} from "../entities/User.js";
 import jwt from 'jsonwebtoken';
 
 const router = express.Router();
-/* Body already parsed by app.use(bodyParser.json()) in server.ts - do not parse again or req.body can be lost */
 
 const SALT_ROUNDS = 10;
 const secretKey = 'j3?gRac8wDo6tr0G';
@@ -91,7 +90,7 @@ router.post('/', async (req, res) => {
     const userRepository = AppDataSource.getRepository(User);
 
     /*im just adding one to the highest user id*/
-    if (userData.userId === null || userData.userId === undefined)
+    if (userData.userId === null || userData.userId === undefined || userData.userId === 0)
     {
         /*https://typeorm.io/docs/query-builder/select-query-builder/*/
         const maxUser = await userRepository.createQueryBuilder("user")

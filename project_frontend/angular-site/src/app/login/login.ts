@@ -7,7 +7,6 @@ import {User} from '../services/user.service';
 @Component({
   selector: 'app-login',
   imports: [
-    RouterLink,
     FormsModule
   ],
   templateUrl: './login.html',
