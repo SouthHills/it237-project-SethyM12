@@ -1,0 +1,17 @@
+{
+  "routes": {
+    "/": {},
+    "/employee-build-view": {},
+    "/employee-component-view": {},
+    "/employee-part-view": {},
+    "/employee-vendor-view": {},
+    "/home": {},
+    "/login": {},
+    "/manager-build-view": {},
+    "/manager-component-view": {},
+    "/manager-part-view": {},
+    "/manager-register-user-view": {},
+    "/manager-user-view": {},
+    "/manager-vendor-view": {}
+  }
+}
