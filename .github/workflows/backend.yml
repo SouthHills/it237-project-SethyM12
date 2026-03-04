@@ -26,12 +26,3 @@ jobs:
           docker build -t ${{ secrets.ACR_LOGIN_SERVER }}/project_backend:latest -t ${{ secrets.ACR_LOGIN_SERVER }}/project_backend:${{ github.sha }} ./project_backend
           docker push ${{ secrets.ACR_LOGIN_SERVER }}/project_backend:latest
           docker push ${{ secrets.ACR_LOGIN_SERVER }}/project_backend:${{ github.sha }}
-
-      - name: Deploy to App Service
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: ${{ secrets.AZURE_BACKEND_APP_NAME }}
-          images: ${{ secrets.ACR_LOGIN_SERVER }}/project_backend:${{ github.sha }}
-          registry-login-server: ${{ secrets.ACR_LOGIN_SERVER }}
-          registry-username: ${{ secrets.ACR_USERNAME }}
-          registry-password: ${{ secrets.ACR_PASSWORD }}
