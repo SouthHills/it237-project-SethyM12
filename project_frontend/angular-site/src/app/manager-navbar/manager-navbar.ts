@@ -16,6 +16,7 @@ export class ManagerNavbar {
 
   logout() : void{
     localStorage.removeItem('token');
+
     this.router.navigate(['/login']);
   }
 }

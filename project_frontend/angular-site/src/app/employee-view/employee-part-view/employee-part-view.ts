@@ -29,7 +29,14 @@ export class EmployeePartView {
     const plantId = this.getPlantIdFromLocalStorage();
     if (!plantId || plantId === 'null' || plantId === 'undefined')
     {
-      this.errorMessage.set('You are not associated with any plant in our database');
+      this.errorMessage.set('You are not associated with any plant in our database. Contact your manager to associate you with a plant ID');
+
+      alert(`Invalid request or token `)
+
+      localStorage.removeItem('token');
+      localStorage.removeItem('plantId');
+
+      this.router.navigate(['/login']);
       return true;
     }
     return false;
@@ -55,9 +62,17 @@ export class EmployeePartView {
           console.log(this.parts);
           console.error('Error fetching parts:', err);
           this.errorMessage.set('Failed to load parts.');
+
+          alert(`Failed to load parts:${err} or invalid token`);
+          localStorage.removeItem('token');
+          localStorage.removeItem('plantId');
+
+          this.router.navigate(['/login']);
         }
       });
     }
+
+
   }
 
 

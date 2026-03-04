@@ -19,13 +19,13 @@
       <tr>
 
         <td>
-          <input class="form-control" id="name" type="text" placeholder="Name"
-                 [(ngModel)]="buildObject.partId"
+          <input class="form-control" id="name" type="number" placeholder="Name"
+                 [(ngModel)]="buildObject.compId"
                  required />
         </td>
         <td>
           <input class="form-control" id="quantity" type="number" placeholder="Quantity"
-                 [(ngModel)]="buildObject.compId"
+                 [(ngModel)]="buildObject.partId"
                  required/>
         </td>
         <td class="text-end">
@@ -45,7 +45,7 @@
             </td>
 
             <td class="d-flex justify-content-end gap-2">
-              <button class="btn btn-primary" (click)="updateBuild(build.compId, build.partId)">Update</button>
+              <button class="btn btn-primary" (click)="updateBuild(build.compId, build.partId, build.oldCompId, build.oldPartId)">Update</button>
               <button class="btn btn-danger" (click)="deleteBuild(build.compId, build.partId)">Delete</button>
             </td>
 

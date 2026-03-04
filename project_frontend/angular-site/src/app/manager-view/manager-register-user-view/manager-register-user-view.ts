@@ -53,6 +53,10 @@ export class ManagerRegisterUserView {
       error: (err) => {
         const msg = err.error?.message ?? 'Registration failed. Email might already exist.';
         this.errorMessage.set(msg);
+        alert(`Failed to create user or invalid token or request.`);
+
+        localStorage.removeItem('token');
+        this.router.navigate(['/login']);
       }
     });
   }
