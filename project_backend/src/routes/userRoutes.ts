@@ -24,7 +24,7 @@ function sanitizeUser(user: any) {
 router.get('/', async (req, res) => {
     const authHeader = req.headers['authorization'];
     if (!checkBearerToken(authHeader, secretKey)) {
-        return res.status(401).json({ message: "Unauthorized: Invalid or missing token." });
+        return res.status(401).json({ message: "Unauthorized action for SAM: Invalid or missing token." });
     }
 
     const users = await AppDataSource.getRepository(User).find();
