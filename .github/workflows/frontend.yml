@@ -1,8 +1,11 @@
 name: Push Frontend Image to ACR
 on:
   push:
+    paths:
+      - project_frontend
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   build-and-push:

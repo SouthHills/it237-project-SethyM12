@@ -1,6 +1,8 @@
 name: Push Backend Image to ACR
 on:
   push:
+    paths:
+      - project_backend
     branches:
       - main
   workflow_dispatch:
