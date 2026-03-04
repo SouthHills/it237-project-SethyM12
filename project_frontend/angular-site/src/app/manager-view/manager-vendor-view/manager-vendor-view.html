@@ -1,0 +1,72 @@
+<div>
+  <app-manager-navbar />
+  @if(errorMessage())
+  {
+    <h3 class="text-danger">{{ errorMessage() }}</h3>
+  }
+  @if(!errorMessage())
+  {
+
+    <table class="table table-striped table-bordered align-middle">
+      <thead class="table-light">
+      <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>CITY</th>
+        <th>STATE</th>
+        <th>ACTIONS</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>
+          <span class="text-muted">Auto</span>
+        </td>
+      <td>
+
+        <input class="form-control" id="name" type="text" placeholder="Name"
+               [(ngModel)]="vendorObject.vendorName"
+               required />
+      </td>
+      <td>
+        <input class="form-control" id="quantity" type="text" placeholder="Quantity"
+               [(ngModel)]="vendorObject.vendorCity"
+               required/>
+      </td>
+        <td>
+          <input class="form-control" id="quantity" type="text" placeholder="Quantity"
+                 [(ngModel)]="vendorObject.vendorState"
+                 required/>
+        </td>
+      <td class="text-end">
+        <form id="createComponentForm">
+          <button type="submit" class="btn btn-sm btn-success" (click)="createVendor()">Create</button>
+        </form>
+      </td>
+      </tr>
+        @for (vendor of vendors(); track vendor.vendorId)
+        {
+          <tr>
+            <td>
+              {{ vendor.vendorId }}
+            </td>
+            <td>
+              <input [(ngModel)]="vendor.vendorName"   />
+            </td>
+            <td>
+              <input [(ngModel)]="vendor.vendorCity"   />
+            </td>
+            <td>
+              <input [(ngModel)]="vendor.vendorState"   />
+            </td>
+
+            <td class="d-flex justify-content-end gap-2">
+              <button class="btn btn-primary" (click)="updateVendor(vendor.vendorId, vendor)">Update</button>
+              <button class="btn btn-danger" (click)="deleteVendor(vendor.vendorId)">Delete</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</div>

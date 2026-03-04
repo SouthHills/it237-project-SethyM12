@@ -1,0 +1,58 @@
+<div>
+
+  <app-manager-navbar />
+  @if(errorMessage())
+  {
+    <h3 class="text-danger">{{ errorMessage() }}</h3>
+  }
+  @if(!errorMessage())
+  {
+    <table class="table table-striped table-bordered align-middle">
+      <thead class="table-light">
+      <tr>
+        <th>ID</th>
+        <th>LAST NAME</th>
+        <th>FIRST NAME</th>
+        <th>EMAIL</th>
+        <th>MANAGER</th>
+        <th>PLANT ID</th>
+        <th>ACTIONS</th>
+      </tr>
+      </thead>
+      <tbody>
+        @for (user of users(); track user.userId) {
+          <tr>
+            <td>
+              {{ user.userId }}
+            </td>
+            <td>
+              <input [ngModel]="user.userLname" (ngModelChange)="user.userFname = $event" />
+            </td>
+            <td>
+              <input [ngModel]="user.userFname" (ngModelChange)="user.userFname = $event" />
+            </td>
+
+            <td>
+              <input [ngModel]="user.userEmail" (ngModelChange)="user.userEmail = $event" type="email"/>
+            </td>
+            <td>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                [checked]="String(user.userRoleManager) === 'true'"
+                (change)="user.userRoleManager = $any($event.target).checked ? 'true' : 'false'" />
+            </td>
+            <td>
+              <input [ngModel]="user.plantId" (ngModelChange)="user.plantId = $event" type="number"/>
+            </td>
+            <td class="d-flex justify-content-end gap-2">
+              <button class="btn btn-primary" type="submit" (click)="updateUser(parseInt(user.userId), user) ">Update</button>
+              <button class="btn btn-danger" (click)="deleteUser(parseInt(user.userId))">Delete</button>
+            </td>
+
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</div>

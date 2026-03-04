@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse" data-bs-target="#navbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar">
+      <div class="navbar-nav">
+        <a routerLink="/employee-component-view" routerLinkActive="active"
+           [routerLinkActiveOptions]="{exact: true}"
+           class="nav-link">
+          Components
+        </a>
+        <a routerLink="/employee-part-view" routerLinkActive="active"
+           [routerLinkActiveOptions]="{exact: true}"
+           class="nav-link">
+          Parts
+        </a>
+        <a routerLink="/employee-build-view" routerLinkActive="active"
+           [routerLinkActiveOptions]="{exact: true}"
+           class="nav-link">
+          Builds
+        </a>
+        <a routerLink="/employee-vendor-view" routerLinkActive="active"
+           [routerLinkActiveOptions]="{exact: true}"
+           class="nav-link">
+          Vendors
+        </a>
+      </div>
+      <div class="navbar-nav ms-auto">
+        <a (click)="logout()" routerLinkActive="active"
+           [routerLinkActiveOptions]="{exact: true}"
+           class="nav-link">
+          Logout
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,59 @@
+<div>
+  <app-manager-navbar/>
+  @if(errorMessage())
+  {
+    <h3 class="text-danger">{{ errorMessage() }}</h3>
+  }
+  @if(!errorMessage())
+  {
+    <table class="table table-striped table-bordered align-middle">
+      <thead class="table-light">
+      <tr>
+        <th>COMP ID</th>
+        <th>PART ID</th>
+        <th>ACTIONS</th>
+
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+
+        <td>
+          <input class="form-control" id="name" type="number" placeholder="Name"
+                 [(ngModel)]="buildObject.compId"
+                 required />
+        </td>
+        <td>
+          <input class="form-control" id="quantity" type="number" placeholder="Quantity"
+                 [(ngModel)]="buildObject.partId"
+                 required/>
+        </td>
+        <td class="text-end">
+          <form id="createComponentForm">
+            <button type="submit" class="btn btn-sm btn-success" (click)="createBuild()">Create</button>
+          </form>
+        </td>
+
+      </tr>
+        @for (build of builds(); track build) {
+          <tr>
+            <td>
+              <input [(ngModel)]="build.compId"/>
+            </td>
+            <td>
+              <input [(ngModel)]="build.partId"/>
+            </td>
+
+            <td class="d-flex justify-content-end gap-2">
+              <button class="btn btn-primary" (click)="updateBuild(build.compId, build.partId, build.oldCompId, build.oldPartId)">Update</button>
+              <button class="btn btn-danger" (click)="deleteBuild(build.compId, build.partId)">Delete</button>
+            </td>
+
+          </tr>
+        }
+
+
+      </tbody>
+    </table>
+  }
+</div>
