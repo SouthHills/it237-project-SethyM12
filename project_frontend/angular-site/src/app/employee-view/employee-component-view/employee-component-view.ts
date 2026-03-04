@@ -35,6 +35,12 @@ export class EmployeeComponentView {
     if (!plantId || plantId === 'null' || plantId === 'undefined')
     {
       this.errorMessage.set('You are not associated with any plant in our database');
+
+      alert('You are not associated with any plant. Contact your manager to assign you one.')
+      localStorage.removeItem('token');
+      localStorage.removeItem('plantId');
+
+      this.router.navigate(['/login']);
       return true;
     }
     return false;
@@ -54,6 +60,12 @@ export class EmployeeComponentView {
           console.log(this.components);
           console.error('Error fetching components:', err);
           this.errorMessage.set('Failed to load components.');
+
+          alert(`Failed to load components or invalid token`);
+          localStorage.removeItem('token');
+          localStorage.removeItem('plantId');
+
+          this.router.navigate(['/login']);
         }
       });
     }

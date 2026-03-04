@@ -2,7 +2,6 @@ import {Component, signal} from '@angular/core';
 import {ManagerNavbar} from '../../manager-navbar/manager-navbar';
 import {Router} from '@angular/router';
 import {User} from '../../services/user.service';
-import {ComponentModel} from '../../models/component.model';
 import {PartModel} from '../../models/part.model';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
@@ -18,7 +17,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 })
 export class ManagerPartView {
 
-  constructor(private userService: User, router: Router)
+  constructor(private userService: User, private router: Router)
   {
     this.getParts();
     this.partObject = {
@@ -62,7 +61,9 @@ export class ManagerPartView {
       },
       error: (err) => {
         console.error(`Error creating component:`, err);
-        alert(`Failed to create component.`);
+        alert(`Failed to create component or Invalid token or request.`);
+
+        this.router.navigate(['/login']);
       }
     });
   }
@@ -75,8 +76,11 @@ export class ManagerPartView {
         this.parts.set(response);
       },
       error: (err) => {
-        console.error('Error fetching parts:', err);
-        this.errorMessage.set('Failed to load parts.');
+        console.error('Error fetching parts', err);
+        this.errorMessage.set('Failed to load .');
+        alert(`Failed to get parts or invalid token or request.`);
+        this.router.navigate(['/login']);
+
       }
     });
   }
@@ -90,7 +94,9 @@ export class ManagerPartView {
       },
       error: (err) => {
         console.error(`Error updating part with ID ${partId}:`, err);
-        alert(`Failed to update part with ID ${partId}.`);
+        alert(`Failed to update part with ID ${partId}. or invalid token`);
+
+        this.router.navigate(['/login']);
       }
     })
   }
@@ -104,7 +110,10 @@ export class ManagerPartView {
       },
       error: (err) => {
         console.error(`Error deleting part with ID ${id}:`, err);
-        alert(`Failed to delete part with ID ${id}.`);
+        alert(`Failed to delete part with ID ${id}. or invalid token`);
+
+        localStorage.removeItem('token');
+        this.router.navigate(['/login']);
       }
     })
   }

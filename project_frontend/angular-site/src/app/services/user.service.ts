@@ -122,17 +122,18 @@ export class User
   }
 
   createBuild(buildObject: any, authentication : string | null): Observable<any> {
-    return this.http.post(this.buildsUrl, {compId: buildObject.compId, partId: buildObject.partId},
+    return this.http.post(this.buildsUrl, {partId: buildObject.partId, compId: buildObject.compId},
       {headers: { Authorization: `Bearer ${authentication}` } });
   }
 
-  updateBuild(compId: number, partId: number, authentication: string | null): Observable<any> {
-    return this.http.put(`${this.buildsUrl}/${partId}/${compId}`, {compId: compId, partId: partId},
+  updateBuild(compId: number, partId: number, oldCompId: number, oldPartId : number,
+              authentication: string | null): Observable<any> {
+    return this.http.put(`${this.buildsUrl}/${oldPartId}/${oldCompId}`, {partId: partId, compId: compId},
       {headers: { Authorization: `Bearer ${authentication}` } });
   }
 
   deleteBuild(compId: number, partId: number, authentication: string | null): Observable<any> {
-    return this.http.delete(`${this.buildsUrl}/${compId}/${partId}`,
+    return this.http.delete(`${this.buildsUrl}/${partId}/${compId}`,
       {headers: { Authorization: `Bearer ${authentication}` } });
   }
 

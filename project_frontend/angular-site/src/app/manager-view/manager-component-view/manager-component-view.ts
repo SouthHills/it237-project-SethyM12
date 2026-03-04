@@ -43,7 +43,12 @@ export class ManagerComponentView {
       error: (err) => {
         console.log(this.components);
         console.error('Error fetching components:', err);
-        this.errorMessage.set('Failed to load components.');
+        this.errorMessage.set('Failed to load components. or invalid token or request');
+
+        alert(`Failed to get components or invalid token or request.`);
+
+        localStorage.removeItem('token');
+        this.router.navigate(['/login']);
       }
     });
   }
@@ -58,7 +63,10 @@ export class ManagerComponentView {
       },
       error: (err) => {
         console.error(`Error updating component with ID ${componentId}:`, err);
-        alert(`Failed to update component with ID ${componentId}.`);
+        alert(`Failed to update component with ID ${componentId}. or invalid token or request`);
+
+        localStorage.removeItem('token');
+        this.router.navigate(['/login']);
       }
     })
   }
@@ -74,7 +82,10 @@ export class ManagerComponentView {
       },
       error: (err) => {
         console.error(`Error deleting component with ID ${componentId}:`, err);
-        alert(`Failed to delete component with ID ${componentId}.`);
+        alert(`Failed to delete component with ID ${componentId}. or invalid token or request.`);
+
+        localStorage.removeItem('token');
+        this.router.navigate(['/login']);
       }
     });
   }
@@ -108,7 +119,10 @@ export class ManagerComponentView {
       },
       error: (err) => {
         console.error(`Error creating component:`, err);
-        alert(`Failed to create component.`);
+        alert(`Failed to create component or invalid token or request.`);
+
+        localStorage.removeItem('token');
+        this.router.navigate(['/login']);
       }
     });
   }

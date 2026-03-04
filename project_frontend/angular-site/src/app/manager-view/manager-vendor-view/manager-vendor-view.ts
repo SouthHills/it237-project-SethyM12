@@ -17,7 +17,7 @@ import {VendorModel} from '../../models/vendor.model';
 })
 export class ManagerVendorView {
 
-  constructor(private userService: User, router: Router) {
+  constructor(private userService: User, private  router: Router) {
     this.getVendors();
     this.vendorObject = {
       vendorId: 0,
@@ -49,6 +49,11 @@ export class ManagerVendorView {
         console.log(this.vendors);
         console.error('Error fetching vendors:', err);
         this.errorMessage.set('Failed to load vendors.');
+
+        alert(`Failed to get vendors or invalid token or request.`);
+
+        localStorage.removeItem('token');
+        this.router.navigate(['/login']);
       }
     });
   }
@@ -72,7 +77,10 @@ export class ManagerVendorView {
       },
       error: (err) => {
         console.error('Error creating vendor:', err);
-        alert('Failed to create vendor.');
+        alert('Failed to create vendor or invalid token.');
+
+        localStorage.removeItem('token');
+        this.router.navigate(['/login']);
       }
     });
   }
@@ -87,7 +95,10 @@ export class ManagerVendorView {
       },
       error: (err) => {
         console.error(`Error deleting vendor with ID ${vendorId}:`, err);
-        alert(`Failed to delete vendor with ID ${vendorId}.`);
+        alert(`Failed to delete vendor with ID ${vendorId}. or Invalid token`);
+
+        localStorage.removeItem('token');
+        this.router.navigate(['/login']);
       }
     });
   }
@@ -102,7 +113,11 @@ export class ManagerVendorView {
       },
       error: (err) => {
         console.error(`Error updating vendor with ID ${vendorId}:`, err);
-        alert(`Failed to update vendor with ID ${vendorId}.`);
+        alert(`Failed to update vendor with ID ${vendorId}. or invalid token`);
+
+        localStorage.removeItem('token');
+        this.router.navigate(['/login']);
+
       }
     });
 

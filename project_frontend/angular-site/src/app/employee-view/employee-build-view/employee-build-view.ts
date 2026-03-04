@@ -35,8 +35,17 @@ export class EmployeeBuildView {
     const plantId = this.getPlantIdFromLocalStorage();
     if (!plantId || plantId === 'null' || plantId === 'undefined') {
       this.errorMessage.set('You are not associated with any plant in our database');
+
+      alert('You are not associated with any plant. Contact your manager to assign you one.')
+      localStorage.removeItem('token');
+      localStorage.removeItem('plantId');
+
+      this.router.navigate(['/login']);
+
+
       return true;
     }
+
     return false;
   }
 
@@ -52,7 +61,13 @@ export class EmployeeBuildView {
         error: (err) => {
           console.log(this.builds);
           console.error('Error fetching builds:', err);
-          this.errorMessage.set('Failed to load builds.');
+          this.errorMessage.set('Failed to load builds or invalid token request');
+
+          alert(`Failed to load builds or invalid token`);
+          localStorage.removeItem('token');
+          localStorage.removeItem('plantId');
+
+          this.router.navigate(['/login']);
         }
       });
     }

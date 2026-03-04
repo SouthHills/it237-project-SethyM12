@@ -32,18 +32,33 @@ export class ManagerBuildView {
     partId: number
   }
 
-  builds = signal<BuildModel[]>([]);
+
+  builds = signal<Array<{
+    compId: number;
+    partId: number;
+    oldCompId: number;
+    oldPartId: number;
+  }>>([]);
 
   getBuilds(): void {
     const authentication = localStorage.getItem('token');
     this.userService.getAllBuilds(authentication).subscribe({
       next: (response) => {
         console.log(response);
-        this.builds.set(response);
+        this.builds.set(
+          response.map((build: BuildModel) => ({
+            ...build,
+            oldCompId: build.compId,
+            oldPartId: build.partId
+          }))
+        );
       },
       error: (err) => {
         console.log(this.builds);
-        console.error('Error fetching builds:', err);
+        console.error('Error fetching builds, or invalid token or request', err);
+
+        localStorage.removeItem('token');
+        this.router.navigate(['/login']);
       }
     });
   }
@@ -63,14 +78,18 @@ export class ManagerBuildView {
       },
       error: (err) => {
         console.error('Error creating build:', err);
-        alert('Error creating build.');
+        alert('Error creating build. Or invalid token or request.');
+        console.log(newBuild);
+
+        localStorage.removeItem('token');
+        this.router.navigate(['/login']);
       }
     });
   }
 
-  updateBuild(compId: number, partId: number): void {
+  updateBuild(compId: number, partId: number, oldCompId: number, oldPartId: number): void {
     const authentication = localStorage.getItem('token');
-    this.userService.updateBuild(compId, partId, authentication).subscribe({
+    this.userService.updateBuild(compId, partId, oldCompId, oldPartId, authentication).subscribe({
       next: () => {
         console.log(`Build with Component ID ${compId} and Part ID ${partId} updated successfully.`);
         this.getBuilds();
@@ -78,7 +97,10 @@ export class ManagerBuildView {
       },
       error: (err) => {
         console.error(`Error updating build with Component ID ${compId} and Part ID ${partId}:`, err);
-        alert(`Error updating build with Component ID ${compId} and Part ID ${partId}.`);
+        alert(`Error updating build with Component ID ${compId} and Part ID ${partId}. Or invalid token or request.`);
+
+        localStorage.removeItem('token');
+        this.router.navigate(['/login']);
       }
     });
   }
@@ -94,7 +116,10 @@ export class ManagerBuildView {
       },
       error: (err) => {
         console.error(`Error deleting build with Component ID ${compId} and Part ID ${partId}:`, err);
-        alert(`Error deleting build with Component ID ${compId} and Part ID ${partId}.`);
+        alert(`Error deleting build with Component ID ${compId} and Part ID ${partId}. Or invalid token or request.`);
+
+        localStorage.removeItem('token');
+        this.router.navigate(['/login']);
       }
     });
   }
