@@ -26,3 +26,14 @@ jobs:
           docker build -t ${{ secrets.ACR_LOGIN_SERVER }}/samples/project_backend:latest -t ${{ secrets.ACR_LOGIN_SERVER }}/samples/project_backend:${{ github.sha }} ./project_backend
           docker push ${{ secrets.ACR_LOGIN_SERVER }}/samples/project_backend:latest
           docker push ${{ secrets.ACR_LOGIN_SERVER }}/samples/project_backend:${{ github.sha }}
+
+  deploy:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ secrets.AZURE_BACKEND_APP_NAME }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          images: ${{ secrets.ACR_LOGIN_SERVER }}/samples/project_backend:latest
