@@ -39,8 +39,8 @@
               <input
                 class="form-check-input"
                 type="checkbox"
-                [checked]="String(user.userRoleManager) === 'true'"
-                (change)="user.userRoleManager = $any($event.target).checked ? 'true' : 'false'" />
+                [checked]="user.userRoleManager === 1 || user.userRoleManager === true"
+                (change)="user.userRoleManager = $any($event.target).checked ? 1 : 0" />
             </td>
             <td>
               <input [ngModel]="user.plantId" (ngModelChange)="user.plantId = $event" type="number"/>
