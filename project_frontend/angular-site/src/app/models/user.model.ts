@@ -4,6 +4,6 @@ export interface UserModel
   userFname: string,
   userLname: string,
   userEmail: string | null,
-  userRoleManager: string,
+  userRoleManager: number | boolean,
   plantId: string,
 }

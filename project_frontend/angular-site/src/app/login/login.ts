@@ -42,7 +42,9 @@ export class Login {
 
         localStorage.setItem('token', response.userToken);
 
-        if(response.userRoleManager === true)
+        const isManager = response.userRoleManager === true || response.userRoleManager === 1;
+
+        if(isManager)
         {
           this.router.navigate(['/manager-user-view']);
         }

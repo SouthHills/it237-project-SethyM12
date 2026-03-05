@@ -51,6 +51,7 @@ export class ManagerUserView
 
   updateUser(userId: number, userObject: UserModel ): void {
     const authentication = localStorage.getItem('token');
+    console.log('Updating userRoleManager (frontend):', userObject.userRoleManager, typeof userObject.userRoleManager);
     this.userService.updateUser(userId, userObject, authentication).subscribe({
       next: () => {
         console.log(`User with ID ${userId} updated successfully.`);

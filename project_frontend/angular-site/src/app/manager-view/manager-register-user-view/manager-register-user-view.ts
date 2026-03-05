@@ -23,7 +23,6 @@ export class ManagerRegisterUserView {
   validateInputs(event: Event) {
     event.preventDefault();
 
-    let userRoleManager = 0; /*by default were gonna say they are not a manager*/
     this.errorMessage.set('');
     this.successMessage.set('');
 
@@ -34,9 +33,7 @@ export class ManagerRegisterUserView {
     const lastName = (form.elements.namedItem('lastName') as HTMLInputElement);
     const userRoleManagerInput = (form.elements.namedItem('makeManager') as HTMLInputElement);
 
-    if (userRoleManagerInput.checked) {
-      userRoleManager = 1;
-    }
+    const userRoleManager: 0 | 1 = userRoleManagerInput.checked ? 1 : 0;
     const userInfo = {
       userFname: firstName.value,
       userLname: lastName.value,

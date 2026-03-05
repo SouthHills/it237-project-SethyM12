@@ -5,23 +5,15 @@ import {UserModel} from '../models/user.model';
 import {ComponentModel} from '../models/component.model';
 import {PartModel} from '../models/part.model';
 
-import { environment } from '../../environments/environment';
-
 @Injectable({
   providedIn: 'root',
 })
 
 export class User
 {
-  private readonly baseUrl = environment.apiBaseUrl;
-  private readonly apiUrl = `${this.baseUrl}/users`;
-  private readonly componentsUrl = `${this.baseUrl}/components`;
-  private readonly plantsUrl = `${this.baseUrl}/parts`;
-  private readonly buildsUrl = `${this.baseUrl}/builds`;
-  private readonly vendorsURL = `${this.baseUrl}/vendors`;
-
   constructor(private http: HttpClient) {}
 
+  private apiUrl = 'http://localhost:3000/users'; // your backend base URL
 
   getUsers(authentication: string | null): Observable<UserModel[]>
   {
@@ -54,6 +46,7 @@ export class User
     return this.http.post<any>(`${this.apiUrl}/login`, { email, password });
   }
 
+  private componentsUrl = 'http://localhost:3000/components';
 
   getAllComponents(authentication: string | null): Observable<ComponentModel[]> {
     return this.http.get<any>(this.componentsUrl,
@@ -85,6 +78,7 @@ export class User
       { headers: { Authorization: `Bearer ${authentication}` } });
   }
 
+  private plantsUrl = 'http://localhost:3000/parts';
 
   getAllParts(authentication: string | null): Observable<any> {
     return this.http.get<any>(this.plantsUrl,
@@ -115,6 +109,7 @@ export class User
       { headers: { Authorization: `Bearer ${authentication}` } });
   }
 
+  private buildsUrl = 'http://localhost:3000/builds';
 
   getAllBuilds(authentication: string | null): Observable<any> {
     return this.http.get<any>(this.buildsUrl,
@@ -143,6 +138,7 @@ export class User
       { headers: { Authorization: `Bearer ${authentication}` } });
   }
 
+  private vendorsURL = 'http://localhost:3000/vendors';
 
   getVendorsByPlantId(plantId: string, authentication: string | null): Observable<any> {
     const url = `${this.vendorsURL}/plant/${plantId}`;
