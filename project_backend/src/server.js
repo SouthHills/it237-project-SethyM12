@@ -19,7 +19,7 @@ app.use("/vendors", vendorRouter);
 app.use("/plants", plantRouter);
 app.use("/builds", buildRouter);
 app.listen(port, () => {
-    console.log(`Server is listening at http://localhost:${port}`);
+    console.log(`Server is listening at: http://localhost:${port}`);
 });
 AppDataSource.initialize()
     .then(() => {

@@ -102,6 +102,7 @@ router.put('/:id', async (req, res) => {
     }
     const id = parseInt(req.params.id, 10);
     const userData = req.body;
+    console.log("Incoming userRoleManager (backend):", userData.userRoleManager, typeof userData.userRoleManager);
     const userRepository = AppDataSource.getRepository(User);
     const existingUser = await userRepository.findOneBy({ userId: id });
     if (!existingUser) {
@@ -113,6 +114,7 @@ router.put('/:id', async (req, res) => {
         }
         userRepository.merge(existingUser, userData);
         const updatedUser = await userRepository.save(existingUser);
+        console.log("Saved userRoleManager (backend):", updatedUser.userRoleManager, typeof updatedUser.userRoleManager);
         res.json(sanitizeUser(updatedUser));
     }
     catch (e) {

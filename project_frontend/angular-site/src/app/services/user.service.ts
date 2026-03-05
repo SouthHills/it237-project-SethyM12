@@ -13,7 +13,7 @@ export class User
 {
   constructor(private http: HttpClient) {}
 
-  private apiUrl = 'http://localhost:3000/users'; // your backend base URL
+  private apiUrl = 'https://backendapp1000-hccpe9dufmhgbgbr.eastus2-01.azurewebsites.net/users'; // your backend base URL
 
   getUsers(authentication: string | null): Observable<UserModel[]>
   {
@@ -46,7 +46,7 @@ export class User
     return this.http.post<any>(`${this.apiUrl}/login`, { email, password });
   }
 
-  private componentsUrl = 'http://localhost:3000/components';
+  private componentsUrl = 'https://backendapp1000-hccpe9dufmhgbgbr.eastus2-01.azurewebsites.net/components';
 
   getAllComponents(authentication: string | null): Observable<ComponentModel[]> {
     return this.http.get<any>(this.componentsUrl,
@@ -78,7 +78,7 @@ export class User
       { headers: { Authorization: `Bearer ${authentication}` } });
   }
 
-  private plantsUrl = 'http://localhost:3000/parts';
+  private plantsUrl = 'https://backendapp1000-hccpe9dufmhgbgbr.eastus2-01.azurewebsites.net/parts';
 
   getAllParts(authentication: string | null): Observable<any> {
     return this.http.get<any>(this.plantsUrl,
@@ -109,7 +109,7 @@ export class User
       { headers: { Authorization: `Bearer ${authentication}` } });
   }
 
-  private buildsUrl = 'http://localhost:3000/builds';
+  private buildsUrl = 'https://backendapp1000-hccpe9dufmhgbgbr.eastus2-01.azurewebsites.net/builds';
 
   getAllBuilds(authentication: string | null): Observable<any> {
     return this.http.get<any>(this.buildsUrl,
@@ -138,7 +138,7 @@ export class User
       { headers: { Authorization: `Bearer ${authentication}` } });
   }
 
-  private vendorsURL = 'http://localhost:3000/vendors';
+  private vendorsURL = 'https://backendapp1000-hccpe9dufmhgbgbr.eastus2-01.azurewebsites.net/vendors';
 
   getVendorsByPlantId(plantId: string, authentication: string | null): Observable<any> {
     const url = `${this.vendorsURL}/plant/${plantId}`;
@@ -172,4 +172,3 @@ export class User
 
 
 }
-
