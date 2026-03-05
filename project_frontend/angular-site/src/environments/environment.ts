@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://localhost:3000'
+  apiBaseUrl: 'https://backendapp1000-hccpe9dufmhgbgbr.eastus2-01.azurewebsites.net'
 };
